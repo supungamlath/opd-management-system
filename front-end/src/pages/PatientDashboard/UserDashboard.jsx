@@ -5,9 +5,8 @@ import { useMediaQuery } from "react-responsive";
 
 import Sidebar from "../../layout/sidebar/UserSidebar";
 import Navbar from "../../layout/navbar/Navbar";
-import PatientDashboard from "./PatientDashboard";
-import Overview from "./Overview/Appointments";
-
+import Appointments from "./Appointments/Appointments";
+import Reports from "./Reports/Reports";
 
 
 function UserDashboard() {
@@ -50,6 +49,7 @@ function UserDashboard() {
         <main className="userdashboard-main">
           <Routes>
             <Route path="/" element={<Appointments />} />
+            <Route path="/reports" element={<Reports/>} />
           </Routes>
         </main>
       </div>

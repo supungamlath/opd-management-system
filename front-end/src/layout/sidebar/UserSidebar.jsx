@@ -29,14 +29,14 @@ function Sidebar(props) {
 
       <div className="center">
         <ul>
-          <Link to={"/userdashboard"}>
+          <Link to={"/"}> 
             <li>
               <DashboardIcon className="icon" />
               {!isSidebarActive && <p>Appointments</p>}
             </li>
           </Link>
 
-          <Link to={"/userdashboard/reports"}>
+          <Link to={"/patientdashboard/reports"}>
             <li>
               <MoneyIcon className="icon" />
               {!isSidebarActive && <p>Reports</p>}

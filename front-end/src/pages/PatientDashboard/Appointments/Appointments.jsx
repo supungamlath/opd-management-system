@@ -1,15 +1,15 @@
 import "./appointments.scss"
 import React from 'react'
 
-function Overview() {
+function Appointments() {
 
    return (
     <div className='overview'>
 
-      <h2>Overview</h2>
+      <h2>Appointments</h2>
       <hr/> 
     </div>
   )
 }
 
-export default Overview
+export default Appointments

@@ -3,9 +3,7 @@ import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import LoginLanding from "./pages/LoginLanding/LoginLanding";
-import Dashboard from "./pages/Dashboard/Dashboard";
 import { AuthContext } from "./context/Auth-context";
-import PatientDashboard from "./pages/PatientDashboard/PatientDashboard";
 import SuperAdminDashboard from "./pages/SuperAdminDashboard/SuperAdminDashboard";
 import HPDashboard from "./pages/HPDashboard/HPDashboard";
 import UserDashboard from "./pages/PatientDashboard/UserDashboard";
