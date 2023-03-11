@@ -69,7 +69,7 @@ function Appointments() {
         onClick={() => popAction(
           'Are you sure?',
           "You won't be able to revert this!",
-          'Approve',
+          'Edit appointment',
           () => apiCrud(`/api/manager/approveLoan`, 'POST', 'Loan approved', {
             loanID: params.row.id,
           })()
@@ -80,7 +80,7 @@ function Appointments() {
         onClick={() => popAction(
           'Are you sure?',
           "This appointment will be cancelled",
-          'Cencel appointment',
+          'Cancel appointment',
           'go back',
           () => apiCrud(`/api/manager/approveLoan`, 'POST', 'Loan approved', {
             loanID: params.row.id,
