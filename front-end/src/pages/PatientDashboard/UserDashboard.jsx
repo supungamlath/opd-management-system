@@ -50,6 +50,7 @@ function UserDashboard() {
           <Routes>
             <Route path="/" element={<Appointments />} />
             <Route path="/reports" element={<Reports/>} />
+            <Route path="/newappointment" element={<Appointments/>} />
           </Routes>
         </main>
       </div>
