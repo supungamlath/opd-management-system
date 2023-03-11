@@ -11,14 +11,17 @@ const registerPatient = async (req, res) => {
         try {
             const patient = Patient.createFromRequest(req);
             await patient.save();
+            const token = signToken(patient);
             res.status(200).json({
-                message: 'User added successfully'
+                message: 'User registered and signed in successfully',
+                token: token,
+                role: "Patient"
             });
         }
         catch (error) {
             console.log(error);
             if (error.code === 'ER_DUP_ENTRY') {
-                res.status(500).send('Username or email already exists!');
+                res.status(500).send('User already exists!');
             }
             else {
                 res.status(500).send('Error adding user!');
@@ -39,7 +42,8 @@ const signInPatient = async (req, res) => {
                 const token = signToken(patient);
                 res.status(200).json({
                     message: 'User signed in successfully',
-                    token: token
+                    token: token,
+                    role: "Patient"
                 });
             }
             else {

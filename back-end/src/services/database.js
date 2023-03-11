@@ -4,10 +4,10 @@ require('dotenv').config();
 
 class MySQLDB {
   constructor(config = { db_user: null, db_password: null }) {
-    this.connect().then(() => this.initDatabase(config));
+    this.connect(config).then(() => this.initDatabase());
   }
 
-  async connect() {
+  async connect(config) {
     this.connection = await mysql.createConnection({
       user: config.db_user || process.env.MYSQLDB_USER,
       password: config.db_password || process.env.MYSQLDB_ROOT_PASSWORD,
