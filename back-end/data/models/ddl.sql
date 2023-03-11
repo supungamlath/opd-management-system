@@ -7,12 +7,11 @@ CREATE TABLE `User` (
   `User_ID` INT NOT NULL AUTO_INCREMENT,
   `Username` varchar(100) NOT NULL UNIQUE,
   `Password` varchar(100) NOT NULL,
-  `Email` varchar(100) NOT NULL UNIQUE,
   `Role` ENUM('Patient', 'Healthcare Professional', 'System Admin'),
   PRIMARY KEY (`User_ID`)
 );
 
-CREATE TABLE `System Admin` (
+CREATE TABLE `System_Admin` (
   `Admin_ID` INT NOT NULL AUTO_INCREMENT,
   `User_ID` INT,
   `First_Name` varchar(25) NOT NULL,
@@ -36,7 +35,7 @@ CREATE TABLE `Patient` (
   FOREIGN KEY (`User_ID`) REFERENCES `User`(`User_ID`)
 );
 
-CREATE TABLE `Healthcare Professional` (
+CREATE TABLE `Healthcare_Professional` (
   `Healthcare_Professional_ID` INT NOT NULL AUTO_INCREMENT,
   `User_ID` INT NOT NULL,
   `First_Name` varchar(25) NOT NULL,
@@ -48,7 +47,7 @@ CREATE TABLE `Healthcare Professional` (
   FOREIGN KEY (`User_ID`) REFERENCES `User`(`User_ID`)
 );
 
-CREATE TABLE `Patient Record` (
+CREATE TABLE `Patient_Record` (
   `Record_ID` INT NOT NULL AUTO_INCREMENT,
   `Patient_ID` INT NOT NULL,
   `Healthcare_Professional_ID` INT NOT NULL,
@@ -58,7 +57,7 @@ CREATE TABLE `Patient Record` (
   `Progress_Notes` varchar(200) NOT NULL,
   PRIMARY KEY (`Record_ID`),
   FOREIGN KEY (`Patient_ID`) REFERENCES `Patient`(`Patient_ID`),
-  FOREIGN KEY (`Healthcare_Professional_ID`) REFERENCES `Healthcare Professional`(`Healthcare_Professional_ID`)
+  FOREIGN KEY (`Healthcare_Professional_ID`) REFERENCES `Healthcare_Professional`(`Healthcare_Professional_ID`)
 );
 
 CREATE TABLE `Appointment` (
@@ -70,5 +69,5 @@ CREATE TABLE `Appointment` (
   `status` ENUM('Pending', 'Accepted', 'Declined', 'Cancelled', 'Completed'),
   PRIMARY KEY (`Appointment_ID`),
   FOREIGN KEY (`Patient_ID`) REFERENCES `Patient`(`Patient_ID`),
-  FOREIGN KEY (`Healthcare_Professional_ID`) REFERENCES `Healthcare Professional`(`Healthcare_Professional_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`Healthcare_Professional_ID`) REFERENCES `Healthcare_Professional`(`Healthcare_Professional_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
