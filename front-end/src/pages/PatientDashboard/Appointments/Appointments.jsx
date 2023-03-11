@@ -3,7 +3,7 @@ import React from 'react'
 import useApi from '../../../hooks/useApi';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import { Link } from "react-router-dom";
 import popAction from "../../../helpers/popAction";
 import apiCrud from "../../../api/apiCrud";
 import Button from '@mui/material/Button';
@@ -95,7 +95,7 @@ function Appointments() {
       <div className="title">
         <h2>Appointments</h2>
         <div className="loan-actions">
-          <Link to={"/adminpanel/loan-request"}>
+          <Link to={"/patientdashboard/newappointment"}>
             <button>
               + New Appointment
             </button>

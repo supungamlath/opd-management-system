@@ -7,6 +7,7 @@ import Sidebar from "../../layout/sidebar/UserSidebar";
 import Navbar from "../../layout/navbar/Navbar";
 import Appointments from "./Appointments/Appointments";
 import Reports from "./Reports/Reports";
+import NewAppointment from "../NewAppointment/NewAppointment";
 
 
 function UserDashboard() {
@@ -26,7 +27,7 @@ function UserDashboard() {
     if (isSmallScreen) {
       setIsSidebarActive(true);
     }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -49,8 +50,8 @@ function UserDashboard() {
         <main className="userdashboard-main">
           <Routes>
             <Route path="/" element={<Appointments />} />
-            <Route path="/reports" element={<Reports/>} />
-            <Route path="/newappointment" element={<Appointments/>} />
+            <Route path="/reports" element={<Reports />} />
+            <Route path="/newappointment" element={<NewAppointment />} />
           </Routes>
         </main>
       </div>
