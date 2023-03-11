@@ -1,6 +1,6 @@
+Drop DATABASE OPDdb;
 CREATE DATABASE IF NOT EXISTS OPDdb;
 USE OPDdb;
-
 
 CREATE TABLE IF NOT EXISTS  `system_admin` (
   `admin_ID` INT NOT NULL AUTO_INCREMENT,
@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `email` varchar(100) NOT NULL UNIQUE,
   `gender` ENUM('Male', 'Female', 'Other') NOT NULL,
   `dob` DATE,
+  `appointments` Int Default 10,
   PRIMARY KEY (`patient_ID`)
 );
 
@@ -73,6 +74,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
 
 -- Funcitons
 
+-- Users for the database
 CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
 flush privileges;
 CREATE USER 'patient'@'localhost' IDENTIFIED BY 'patient';
