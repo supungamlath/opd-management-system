@@ -5,7 +5,7 @@ const app = express()
 const port = server_config.port
 
 // API route functions from the data models
-const userAPI = require('./data/models/auth')
+const authAPI = require('./data/models/auth')
 
 // Use the body-parser middleware to parse the request body
 app.use(bodyParser.json());
@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 app.get('/', (req, res) => res.send("Welcome to Kernel Panic, gammac neh!"))
 
 // Auth routes
-app.post('/api/user/signin', customerAPI.signInCustomerAsync)
+app.post('/api/user/signin', authAPI.signInUserAsync)
 
 // log listining port
 app.listen(port, () => {
