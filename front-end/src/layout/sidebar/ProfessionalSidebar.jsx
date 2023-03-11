@@ -1,4 +1,4 @@
-import "./sidebar.scss";
+import "./professionalSidebar.scss";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
@@ -27,7 +27,7 @@ function ProfessionalSidebar(props) {
 
       <div className="center">
         <ul>
-          <Link to={"/"}> 
+          <Link to={"/"}>
             <li>
               <DashboardIcon className="icon" />
               {!isSidebarActive && <p>Appointments</p>}
@@ -40,7 +40,7 @@ function ProfessionalSidebar(props) {
               {!isSidebarActive && <p>Reports</p>}
             </li>
           </Link>
-          
+
 
           <li onClick={signOut}>
             <ExitToAppOutlinedIcon className="icon" />

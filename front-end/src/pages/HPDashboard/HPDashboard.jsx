@@ -3,11 +3,11 @@ import "./hpdashboard.scss";
 import { Routes, Route } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
-import Navbar from "../../layout/navbar/Navbar";
 import ProfessionalSidebar from "../../layout/sidebar/ProfessionalSidebar";
+import Navbar from "../../layout/navbar/Navbar";
 import Appointments from "./Appointments/Appointments";
 
-function HPdashboard() {
+function SuperAdminDashboard() {
   // control the responsive sidebar
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
@@ -28,7 +28,7 @@ function HPdashboard() {
   }, []);
 
   return (
-    <div className="HPdashboard">
+    <div className="userdashboard">
       <ProfessionalSidebar
         isSidebarActive={isSidebarActive}
         toggleSidebar={toggleSidebar}
@@ -36,15 +36,15 @@ function HPdashboard() {
       <div
         className={
           isSidebarActive
-            ? "HPdashboard-container collapse"
-            : "HPdashboard-container"
+            ? "userdashboard-container collapse"
+            : "userdashboard-container"
         }
       >
         <header>
           <Navbar isSidebarActive={isSidebarActive} />
         </header>
 
-        <main className="HPdashboard-main">
+        <main className="userdashboard-main">
           <Routes>
             <Route path="/" element={<Appointments />} />
           </Routes>
@@ -54,4 +54,4 @@ function HPdashboard() {
   );
 }
 
-export default HPdashboard;
+export default SuperAdminDashboard;
