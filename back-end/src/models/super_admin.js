@@ -19,5 +19,5 @@ class Super_Admin {
 }
 
 module.exports = {
-    Professional
+    Super_Admin
 }
