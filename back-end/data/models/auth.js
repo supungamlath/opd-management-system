@@ -8,7 +8,6 @@ class User{
     constructor(data){
         this.role = data.role;
         this.username = data.username;
-        this.email = data.email;
         this.password = data.password;
     }
 }
