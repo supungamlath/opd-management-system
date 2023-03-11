@@ -1,5 +1,6 @@
 const express = require('express');
 const patientController = require('../controllers/patientControllers');
+const appointmentController = require('../controllers/appointmentControllers');
 const { body } = require('express-validator');
 const router = new express.Router();
 
@@ -21,5 +22,15 @@ router.post('/api/patient/login',
     body('password').not().isEmpty().escape(),
     patientController.signInPatient
 );
+
+router.post('/api/patient/create-appointment',
+    body('appointment_date').not().isEmpty().isISO8601('yyyy-mm-dd').escape(),
+    body('appointment_time').not().isEmpty().escape(),
+    body('patient_ID').not().isEmpty().escape(),
+    body('professional_ID').not().isEmpty().escape(),
+    body('status').not().isEmpty().escape(),
+    appointmentController.createAppointment
+);
+
 
 module.exports = router;
