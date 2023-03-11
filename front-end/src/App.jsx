@@ -8,6 +8,7 @@ import { AuthContext } from "./context/Auth-context";
 import PatientDashboard from "./pages/PatientDashboard/PatientDashboard";
 import SuperAdminDashboard from "./pages/SuperAdminDashboard/SuperAdminDashboard";
 import HPDashboard from "./pages/HPDashboard/HPDashboard";
+import UserDashboard from "./pages/PatientDashboard/UserDashboard";
 
 
 
@@ -34,7 +35,7 @@ function App() {
           
         ) : (
           <Routes>
-            <Route path="/patientdashboard/*" element={<PatientDashboard />} />
+            <Route path="/patientdashboard/*" element={<UserDashboard />} />
             <Route
               path="*"
               element={<Navigate to="/patientdashboard" replace />}
