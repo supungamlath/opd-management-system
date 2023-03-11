@@ -1,0 +1,11 @@
+paths:
+  /:
+    get:
+       description: Check whether the API is working
+       tags:
+        - Start
+       responses:
+        '200':
+           description: Success
+        '500':
+           description: Error
