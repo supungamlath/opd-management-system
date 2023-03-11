@@ -2,7 +2,6 @@ import "./appointments.scss"
 import React from 'react'
 import useApi from '../../../hooks/useApi';
 import { DataGrid } from '@mui/x-data-grid';
-import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import popAction from "../../../helpers/popAction";
@@ -11,8 +10,7 @@ import Button from '@mui/material/Button';
 
 function Appointments() {
 
-  const { data } = useApi("/api/user/appointments", "GET")
-
+  // const { data } = useApi("/api/user/appointments", "GET")
   // get columns and rows from data
   // const columns = data ? data.columns : []
   // const rows = data ? data.rows : []
