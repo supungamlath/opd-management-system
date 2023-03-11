@@ -1,6 +1,8 @@
 import './dashboard.scss'
 import { AuthContext } from "../../context/Auth-context";
 import React, { useContext } from "react";
+import {setLocalStorage} from '../../helpers/localStorage';
+import popAlert from '../../helpers/popAlert';
 
 function Dashboard(){
     const { role, jwt } = useContext(AuthContext);
@@ -8,10 +10,7 @@ function Dashboard(){
     function signOut() {    
         localStorage.removeItem('jwt')
         setLocalStorage('auth', {})
-        setAuth({})
         popAlert(`See you soon`)
-        navigate('/')
-        setTimeout(()=> window.location.reload(), 1200)
     }
 
     return (
