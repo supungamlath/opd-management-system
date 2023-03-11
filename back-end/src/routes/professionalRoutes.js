@@ -15,3 +15,5 @@ router.post('/api/professional/create-appointment',
 router.get('/api/professional/get-appointments',
     appointmentController.getAppointments
 );
+
+module.exports = router;
