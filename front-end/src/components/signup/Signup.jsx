@@ -40,25 +40,13 @@ export default function Login() {
     // check if passwords match
     // check if password is good enough
     if (signup.password.length < 6) {
-      setErrorMessages('Password must be at least 6 characters');
-
-      // delay for 10 seconds
-      setTimeout(() => {
-        setErrorMessages('');
-      }, 10000);
-
+      popAlert('Password must be at least 6 characters long');
       return;
     }
 
     
     if (signup.password !== signup.confirm_password) {
-      setErrorMessages('Passwords do not match');
-
-      // delay for 10 seconds
-      setTimeout(() => {
-        setErrorMessages('');
-      }, 10000);
-
+      popAlert('Passwords do not match');
       return;
     }
 
