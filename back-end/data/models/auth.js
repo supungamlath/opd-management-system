@@ -34,7 +34,7 @@ const signInUserAsync = async (req, res) => {
     
   } catch (error) {
     res.status(500).json({
-      error: error
+      error: error.message
     });
   }
 };
@@ -44,17 +44,19 @@ const signUpUserAsync = async (req, res) => {
     // Set the role of the user as patient because only patients
     const user = new User(req.body)
     
-    // Insert the manager into the manager table
+    // Insert the user into the User table
     const [result] = await db.connection.query('INSERT INTO user SET ?', user);
-    const insertedManagerId = result.insertId;
-    
+    const insertedUserId = result.insertId;
+    const token = signToken({user})
+
     res.status(200).json({
-      message: `User ${insertedManagerId} created successfully!`
+      "token" : token,
+      "role": user.role
     });
-  
+
   } catch (error) {
     res.status(500).json({
-      error: error
+      error: error.message
     });
   }
 }
@@ -62,5 +64,6 @@ const signUpUserAsync = async (req, res) => {
 
 module.exports = {
     User,
-    signInUserAsync
+    signInUserAsync,
+    signUpUserAsync
   }
