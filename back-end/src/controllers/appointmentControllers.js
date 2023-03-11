@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator');
 
 const { verifyToken } = require('../services/jwt')
-const { Appointment } = require('../models/appointments');
+const { Appointment } = require('../models/appointment');
 
 const createAppointment = async (req, res) => {
     const errors = validationResult(req);
