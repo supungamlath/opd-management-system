@@ -20,7 +20,7 @@ export default function Login() {
     password: '',
     confirm_password: '',
     name: '',
-    role: 'patient',
+    role: 'Patient',
     email: '',
     nic: '',
   });
