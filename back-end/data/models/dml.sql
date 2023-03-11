@@ -1,9 +1,7 @@
 USE OPDdb;
 
 INSERT INTO user (Username, Password, Role) VALUES
-('admin', 'admin123', 'System Admin'),
-('johnDoe', 'password123', 'Patient'),
-('janeSmith', 'password456', 'Healthcare Professional');
+('admin', '$2a$10$CwTycUXWue0Thq9StjUM0uQ4dVJ4kdSBYfX8R1mXHu0dyj16Fc.ja', 'System Admin'), -- password=admin123
 
 INSERT INTO system_admin (user_ID, first_name, last_name, email, phone_number) VALUES
 (1, 'Anoshan', 'Jayahanthan', 'johndoe@example.com', '123-456-7890');
