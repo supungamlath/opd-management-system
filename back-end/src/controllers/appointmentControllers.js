@@ -16,7 +16,7 @@ const createAppointment = async (req, res) => {
                 const appointment = Appointment.createFromRequest(req)
                 await appointment.save()
                 res.status(200).json({
-                    message: 'Appointed created succesfully',
+                    message: 'Appointment created succesfully',
                 });
             }
 
