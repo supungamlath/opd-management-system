@@ -39,6 +39,11 @@ class Appointment {
         return rows[0];
     }
 
+    static async findByDateTime(date, time) {
+        const [rows] = await db.connection.query('SELECT * FROM appointment WHERE appointment_date = ? and appointment_time', [date, time]);
+        return rows[0];
+    }
+
 }
 
 module.exports = {
