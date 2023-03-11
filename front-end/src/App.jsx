@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       {jwt ? (
-        (role === "System_Admin" || role === "Healthcare Professional") ? (
+        (role === "System_Admin" || role === "Professional") ? (
           (role === "System_Admin") ?
             (
               <Routes>

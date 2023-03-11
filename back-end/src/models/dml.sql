@@ -8,7 +8,7 @@ INSERT INTO patient (username, password, first_name, last_name, nic, address, em
 ('JohnDoe', '$2a$10$CwTycUXWue0Thq9StjUM0uG8BnUfbEgXpwGSWmzmOTa7NZl7gLMK2', 'John', 'Doe', '1234567890', '123 Main St', 'janesmith@example.com', 'Female', '1990-01-01'); -- password : 123456
 
 INSERT INTO healthcare_professional (username, password, first_name, last_name, email, phone_Number, role) VALUES
-('Chathura', '123456', 'Chathura', 'Gunasekara', 'chathura@example.com', '555-555-5555', 'Doctor');
+('Chathura', '$2a$10$CwTycUXWue0Thq9StjUM0uG8BnUfbEgXpwGSWmzmOTa7NZl7gLMK2', 'Chathura', 'Gunasekara', 'chathura@example.com', '555-555-5555', 'Doctor'); -- password : 123456
 
 INSERT INTO patient_record (patient_ID, professional_ID, disease_Reason, prescriptions, treatment_Plans, progress_Notes) VALUES
 (1, 1, 'Fever', 'Ibuprofen', 'Rest and hydration', 'Patient feels better after taking medication');

@@ -5,10 +5,9 @@ import { useMediaQuery } from "react-responsive";
 
 import Sidebar from "../../layout/sidebar/UserSidebar";
 import Navbar from "../../layout/navbar/Navbar";
-import Overview from "./Overview/Appointments";
 import Appointments from "./Appointments/Appointments";	
 
-function HPDashboard() {
+function HPdashboard() {
   // control the responsive sidebar
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
