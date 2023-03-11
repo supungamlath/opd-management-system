@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `email` varchar(100) NOT NULL UNIQUE,
   `gender` ENUM('Male', 'Female', 'Other') NOT NULL,
   `dob` DATE,
+  `appointments` INT Default 10,
   PRIMARY KEY (`patient_ID`)
 );
 
@@ -58,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `appointment_time` TIME NOT NULL,
   `patient_ID` INT NOT NULL,
   `professional_ID` INT NOT NULL,
-  `status` ENUM('Pending', 'Accepted', 'Arrived', 'Missed', 'Declined', 'Cancelled', 'Completed'),
+  `status` ENUM('Pending', 'Accepted', 'Arrived', 'Missed', 'Declined', 'Cancelled', 'Completed') ,
   PRIMARY KEY (`appointment_ID`),
   FOREIGN KEY (`patient_ID`) REFERENCES `patient`(`patient_ID`),
   FOREIGN KEY (`professional_ID`) REFERENCES `healthcare_professional`(`professional_ID`) ON DELETE CASCADE ON UPDATE CASCADE
