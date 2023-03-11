@@ -36,7 +36,7 @@ export default function Login() {
     submit.preventDefault();
 
     await axios({
-      url:  `/api/patient/login`,
+      url:  `/api/user/login`,
       method: 'POST',
       data: {
         username: login.username.trim(),
