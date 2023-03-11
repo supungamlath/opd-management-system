@@ -11,6 +11,7 @@ function Dashboard(){
         localStorage.removeItem('jwt')
         setLocalStorage('auth', {})
         popAlert(`See you soon`)
+        window.location.reload()
     }
 
     return (
