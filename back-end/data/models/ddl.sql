@@ -63,8 +63,8 @@ CREATE TABLE `patient_record` (
 
 CREATE TABLE `appointment` (
   `appointment_ID` INT NOT NULL AUTO_INCREMENT,
-  `appointment_Date` DATE NOT NULL,
-  `appointment_Time` TIME NOT NULL,
+  `appointment_date` DATE NOT NULL,
+  `appointment_time` TIME NOT NULL,
   `patient_ID` INT NOT NULL,
   `healthcare_professional_ID` INT NOT NULL,
   `status` ENUM('Pending', 'Accepted', 'Arrived', 'Missed', 'Declined', 'Cancelled', 'Completed'),
@@ -72,3 +72,13 @@ CREATE TABLE `appointment` (
   FOREIGN KEY (`patient_ID`) REFERENCES `patient`(`patient_ID`),
   FOREIGN KEY (`healthcare_Professional_ID`) REFERENCES `healthcare_professional`(`healthcare_professional_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+-- Indexes
+
+CREATE INDEX `appointment_ID` ON `user` (`username`);
+CREATE INDEX `user_role` ON `user` (`role`);
+
+
+-- Funcitons
+
