@@ -1,7 +1,7 @@
-import './login.scss'
+import './signup.scss'
 import axios from 'axios';
 import React, { useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/Auth-context';
 import popAlert from '../../helpers/popAlert';
 
@@ -14,9 +14,14 @@ export default function Login() {
   const [errorMessages, setErrorMessages] = React.useState('');
 
   // used for storing user input
-  const [login, setLogin] = React.useState({
+  const [signup, setLogin] = React.useState({
     username: '',
     password: '',
+    confirm_password: '',
+    name: '',
+    role: 'patient',
+    email: '',
+    nic: '',
   });
 
   // handle input change
@@ -36,11 +41,16 @@ export default function Login() {
     submit.preventDefault();
 
     await axios({
-      url:  `/api/patient/login`,
+      url:  `/api/patient/signup`,
       method: 'POST',
       data: {
-        username: login.username.trim(),
-        password: login.password
+        username: signup.username.trim(),
+        password: signup.password,
+        confirm_password: signup.confirm_password,
+        name: signup.name,
+        role: signup.role,
+        email: signup.email,
+        nic: signup.nic,
       }
     })
     .then((res) => {
@@ -59,17 +69,22 @@ export default function Login() {
           url:  `/api/patient/signin`,
           method: 'POST',
           data: {
-            username: login.username.trim(),
-            password: login.password
+            username: signup.username.trim(),
+            password: signup.password,
+            confirm_password: signup.confirm_password,
+            name: signup.name,
+            role: signup.role,
+            email: signup.email,
+            nic: signup.nic,
           }
         })
         .then((res) => {
-          console.log('Successfully logged patient');
+          console.log('Successfully signed up patient');
           localStorage.setItem('jwt', res.data.token);
           // console.log(res.data)
           signIn(res.data);
           // console.log(localStorage.jwt)
-          popAlert(`Welcome Back`);
+          popAlert(`Signed Up Successfully`);
           navigate('/');
           return res.data;
         })
@@ -77,7 +92,7 @@ export default function Login() {
           (error) => {
             if (error.response) {
               // Request made and server responded
-              setErrorMessages("Invalid Username or Password")
+              setErrorMessages("Please check your details again")
             } else if (error.request) {
               // The request was made but no response was received
               console.log(error.request)
@@ -105,6 +120,45 @@ export default function Login() {
           <form action="/" onSubmit={handleSubmit}>
 
             <div className='input-holder'>
+              <label>Full Name</label><br/>
+              <input 
+                type="name"
+                name="name"
+                placeholder={'Enter your full name'}
+                required
+                autoFocus
+                onChange={handleChange}
+                value={signup.name}
+              />
+            </div>
+
+            <div className='input-holder'>
+              <label>NIC number</label><br/>
+              <input 
+                type="name"
+                name="nic"
+                placeholder={'Enter your nic number'}
+                required
+                autoFocus
+                onChange={handleChange}
+                value={signup.nic}
+              />
+            </div>
+
+            <div className='input-holder'>
+              <label>Email</label><br/>
+              <input 
+                type="email"
+                name="email"
+                placeholder={'Enter your full name'}
+                required
+                autoFocus
+                onChange={handleChange}
+                value={signup.email}
+              />
+            </div>
+
+            <div className='input-holder'>
               <label>Username</label><br/>
               <input 
                 type="username"
@@ -113,14 +167,12 @@ export default function Login() {
                 required
                 autoFocus
                 onChange={handleChange}
-                value={login.username}
+                value={signup.username}
               />
             </div>
 
             <div className='input-holder'>
               <label>Password</label>
-              <Link to="/forget-password"><label className="right-label "
-              style={{color: "#007bff"}}>Forgot password?</label></Link>
               <br/>
               <input 
                 type="password" 
@@ -128,12 +180,26 @@ export default function Login() {
                 placeholder={'Enter your Password'} 
                 required
                 onChange={handleChange}
-                value={login.password}
+                value={signup.password}
+              />
+            </div>
+
+            <div className='input-holder'>
+              <label>confirm password</label><br/>
+              <input 
+                type="password"
+                name="confirm_password"
+                placeholder={'Confirm your Password'}
+                required
+                autoFocus
+                onChange={handleChange}
+                value={signup.confirm_password}
+                check = {signup.password === signup.confirm_password}
               />
             </div>
 
             <div className="input-holder">
-            <button id="sub_btn" type="submit" >Login</button>
+            <button id="sub_btn" type="submit" >Sign up</button>
             </div>
 
             <div className="error">{errorMessages}</div>

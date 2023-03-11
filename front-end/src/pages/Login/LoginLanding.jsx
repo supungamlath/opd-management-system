@@ -3,6 +3,7 @@ import React from "react";
 import CustomizedDialogs from "../../components/dialog/Dialog";
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import Login from "../../components/login/Login";
+import Signup from "../../components/signup/Signup";
 
 function Homepage() {
   return (
@@ -32,7 +33,7 @@ function Homepage() {
               <Login />
             </CustomizedDialogs>
             <CustomizedDialogs title="Sign Up" btn="Sign Up">
-              <Login />
+              <Signup/>
             </CustomizedDialogs>
           </div>
         </section>
