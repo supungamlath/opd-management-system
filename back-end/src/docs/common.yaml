@@ -4,7 +4,7 @@ paths:
         summary: Login user
         description: Logs user into the system
         tags:
-          - User
+          - Common
         requestBody:
           description: Created user object
           content:
