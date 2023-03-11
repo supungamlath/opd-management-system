@@ -4,7 +4,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import LoginLanding from "./pages/LoginLanding/LoginLanding";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Test from "./components/test/Test";
 import { AuthContext } from "./context/Auth-context";
 
 
