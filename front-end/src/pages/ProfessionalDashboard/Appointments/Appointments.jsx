@@ -46,49 +46,12 @@ function Appointments() {
 
   ];
 
-  const newColumns = [...columns,
-  {
-    field: 'actions',
-    headerName: 'Actions',
-    minWidth: 110,
-    flex: 1,
-    align: 'center',
-    renderCell: (params) => usersActions(params)
-  },]
 
   const rows = [
     { id: 1, docName: 'Kamal', date: '11/12/2023', time: "10:30 AM", status: "Pending" },
     { id: 2, docName: 'Kamal', date: '11/12/2023', time: "11:30 AM", status: "Pending" },
     { id: 3, docName: 'Kamal', date: '11/12/2023', time: "12:30 AM", status: "Pending" },
   ];
-
-  const usersActions = (params) => (
-    <div className='actions'>
-      <Button variant="contained" className="activate"
-        onClick={() => popAction(
-          'Are you sure?',
-          "You won't be able to revert this!",
-          'Edit appointment',
-          () => apiCrud(`/api/manager/approveLoan`, 'POST', 'Loan approved', {
-            loanID: params.row.id,
-          })()
-        )}>
-        Edit
-      </Button>
-      <Button variant="contained" className="activate"
-        onClick={() => popAction(
-          'Are you sure?',
-          "This appointment will be cancelled",
-          'Cancel appointment',
-          'go back',
-          () => apiCrud(`/api/manager/approveLoan`, 'POST', 'Loan approved', {
-            loanID: params.row.id,
-          })()
-        )}>
-        Cancel
-      </Button>
-    </div>
-  )
 
   return (
     <div className='overview'>
@@ -100,7 +63,7 @@ function Appointments() {
       <Box sx={{ height: 400, width: '100%' }}>
         <DataGrid
           rows={rows}
-          columns={newColumns}
+          columns={columns}
           disableSelectionOnClick
           sx={{
             '& .MuiDataGrid-cell:hover': {
