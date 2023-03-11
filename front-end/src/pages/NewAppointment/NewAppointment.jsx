@@ -8,6 +8,9 @@ function NewAppointment() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        // remove console log when done
+        console.log(doctor)
         console.log(date)
         console.log(time)
     }
