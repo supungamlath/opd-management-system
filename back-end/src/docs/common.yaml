@@ -1,0 +1,27 @@
+paths:
+  /api/user/login:
+      post:
+        summary: Login user
+        description: Logs user into the system
+        tags:
+          - User
+        requestBody:
+          description: Created user object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                    description: Username
+                    example: 'John123'
+                  password:
+                    type: string
+                    description: Password
+                    example: '123456'
+        responses:
+          '200':
+            description: Success
+          '500':
+            description: Error
