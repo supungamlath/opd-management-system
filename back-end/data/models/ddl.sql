@@ -32,6 +32,7 @@ CREATE TABLE `patient` (
   `email` varchar(100) NOT NULL UNIQUE,
   `gender` ENUM('Male', 'Female', 'Other') NOT NULL,
   `dob` DATE,
+  `appointments` INT Default 10,
   PRIMARY KEY (`patient_ID`),
   FOREIGN KEY (`user_ID`) REFERENCES `user`(`user_ID`)
 );
@@ -82,3 +83,12 @@ CREATE INDEX `user_role` ON `user` (`role`);
 
 -- Funcitons
 
+-- Grant all priviledges for all users
+grant all privileges on OPDdb.* to 'root'@'localhost';
+grant all privileges on OPDdb.healthcare_professional to 'admin'@'localhost';
+
+grant update on OPDdb.healthcare_professional to 'professional'@'localhost';
+grant all privileges on OPDdb.appointment to 'professional'@'localhost';
+
+grant all privileges on OPDdb.patient to 'patient'@'localhost'; 
+grant all privileges on OPDdb.appointment to 'patient'@'localhost'; 
