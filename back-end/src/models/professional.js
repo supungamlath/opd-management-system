@@ -36,6 +36,11 @@ class Professional {
         return rows[0];
     }
 
+    static async findByType(role) {
+        const [rows] = await db.connection.query('SELECT * FROM healthcare_professional WHERE role = ?', [role]);
+        return rows[0];
+    }
+
     static async getAllHP() {
         const [rows] = await db.connection.query('SELECT * FROM healthcare_professional');
         return rows;
