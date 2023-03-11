@@ -5,9 +5,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import LoginLanding from "./pages/LoginLanding/LoginLanding";
 import { AuthContext } from "./context/Auth-context";
 import SuperAdminDashboard from "./pages/SuperAdminDashboard/SuperAdminDashboard";
-import HPDashboard from "./pages/HPDashboard/HPDashboard";
 import UserDashboard from "./pages/PatientDashboard/UserDashboard";
-
+import ProfDashboard from "./pages/ProfessionalDashboard/ProfDashboard";
 
 
 function App() {
@@ -26,8 +25,8 @@ function App() {
             ) :
             (
               <Routes>
-                <Route path="/hpdashboard/*" element={<HPDashboard />} />
-                <Route path="*" element={<Navigate to="/hpdashboard" replace />} />
+                <Route path="/profdashboard/*" element={<ProfDashboard />} />
+                <Route path="*" element={<Navigate to="/profdashboard" replace />} />
               </Routes>
             )
 

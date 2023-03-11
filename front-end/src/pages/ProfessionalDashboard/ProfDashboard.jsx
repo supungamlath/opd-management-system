@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import "./hpdashboard.scss";
+import "./userdashboard.scss";
 import { Routes, Route } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
-import ProfessionalSidebar from "../../layout/sidebar/ProfessionalSidebar";
+import Sidebar from "../../layout/sidebar/UserSidebar";
 import Navbar from "../../layout/navbar/Navbar";
 import Appointments from "./Appointments/Appointments";
+import Reports from "./Reports/Reports";
+import NewAppointment from "../NewAppointment/NewAppointment";
 
-function SuperAdminDashboard() {
+
+function ProfDashboard() {
   // control the responsive sidebar
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
@@ -29,7 +32,7 @@ function SuperAdminDashboard() {
 
   return (
     <div className="userdashboard">
-      <ProfessionalSidebar
+      <Sidebar
         isSidebarActive={isSidebarActive}
         toggleSidebar={toggleSidebar}
       />
@@ -47,6 +50,8 @@ function SuperAdminDashboard() {
         <main className="userdashboard-main">
           <Routes>
             <Route path="/" element={<Appointments />} />
+            <Route path="/reports" element={<Reports />} />
+            <Route path="/newappointment" element={<NewAppointment />} />
           </Routes>
         </main>
       </div>
@@ -54,4 +59,4 @@ function SuperAdminDashboard() {
   );
 }
 
-export default SuperAdminDashboard;
+export default ProfDashboard;
