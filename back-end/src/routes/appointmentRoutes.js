@@ -15,3 +15,12 @@ router.post('/api/appointment/create',
 router.get('/api/appointment/get_appointments',
     appointmentController.getAppointments
 );
+
+router.post('/api/appointment/edit',
+    body('appointment_ID').not().isEmpty().escape(),
+    body('appointment_date').not().isEmpty().isISO8601('yyyy-mm-dd').escape(),
+    body('appointment_time').not().isEmpty().escape(),
+    appointmentController.editAppointment
+);
+
+module.exports = router

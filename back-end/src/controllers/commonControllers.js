@@ -43,6 +43,9 @@ const signInUser = async (req, res) => {
                             role: "System_Admin"
                         });
                     }
+                    else {
+                        throw Error("Invalid User")
+                    }
                 }
             }
         }

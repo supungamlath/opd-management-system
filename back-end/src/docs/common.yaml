@@ -1,5 +1,5 @@
 paths:
-  /api/user/login:
+  /api/common/login:
       post:
         summary: Login user
         description: Logs user into the system

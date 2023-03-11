@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `email` varchar(100) NOT NULL UNIQUE,
   `gender` ENUM('Male', 'Female', 'Other') NOT NULL,
   `dob` DATE,
-  `appointments` INT Default 10,
   PRIMARY KEY (`patient_ID`)
 );
 
@@ -59,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `appointment_time` TIME NOT NULL,
   `patient_ID` INT NOT NULL,
   `professional_ID` INT NOT NULL,
-  `status` ENUM('Pending', 'Accepted', 'Arrived', 'Missed', 'Declined', 'Cancelled', 'Completed') ,
+  `status` ENUM('Pending', 'Accepted', 'Arrived', 'Missed', 'Declined', 'Cancelled', 'Completed'),
   PRIMARY KEY (`appointment_ID`),
   FOREIGN KEY (`patient_ID`) REFERENCES `patient`(`patient_ID`),
   FOREIGN KEY (`professional_ID`) REFERENCES `healthcare_professional`(`professional_ID`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -74,18 +73,12 @@ CREATE TABLE IF NOT EXISTS `appointment` (
 
 -- Funcitons
 
--- Users
-grant all privileges on bank.* to 'admin'@'localhost';
+-- Grant all priviledges for all users
+grant all privileges on OPDdb.* to 'root'@'localhost';
+grant all privileges on OPDdb.healthcare_professional to 'admin'@'localhost';
 
-grant select on bank.* to 'manager'@'localhost';
-grant insert, update, select on loan to 'manager'@'localhost';
+grant update on OPDdb.healthcare_professional to 'professional'@'localhost';
+grant all privileges on OPDdb.appointment to 'professional'@'localhost';
 
-grant select on bank.* to 'employee'@'localhost';
-grant insert, select on loan to 'employee'@'localhost';
-
-grant select on bank.* to 'customer'@'localhost';
-grant insert, select on online_loan to 'customer'@'localhost';
-grant insert, select on transfer to 'customer'@'localhost';
-grant update, select on online_loan_installment to 'customer'@'localhost';
-grant update, select on loan_installment to 'customer'@'localhost';
-
+grant all privileges on OPDdb.patient to 'patient'@'localhost'; 
+grant all privileges on OPDdb.appointment to 'patient'@'localhost'; 

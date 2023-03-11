@@ -1,0 +1,52 @@
+paths:
+  /api/appointment/create:
+    post:
+      summary: Create appointment
+      description: Create an appointment for a patient
+      tags:
+        - Appointment
+      requestBody:
+        description: Created appointment object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '200':
+            description: Success
+        '500':
+            description: Error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+  schemas:
+    Appointment:
+      type: object
+      properties:
+        appointment_date:
+          type: string
+          description: Appointment Date
+          example: '1999-12-31'
+        appointment_time:
+          type: string
+          description: Appointment Time
+          example: '19:30:10'
+        patient_ID:
+          type: string
+          description: Patient ID
+          example: '1'
+        professional_ID:
+          type: string
+          description: Professional ID
+          example: '1'
+        status:
+          type: string
+          description: NIC
+          example: 'Pending'
+
+security:
+  - bearerAuth: []
