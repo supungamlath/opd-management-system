@@ -33,7 +33,6 @@ class Appointment {
         const [rows] = await db.connection.query('SELECT * FROM appointment WHERE professional_id = ?', [professional_id]);
         return rows[0];
     }
-
     
     static async findByStatus(status) {
         const [rows] = await db.connection.query('SELECT * FROM appointment WHERE status = ?', [status]);
