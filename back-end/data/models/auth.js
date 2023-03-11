@@ -5,11 +5,11 @@ const {root_config} = require('../../src/config/config')
 const db = new MySQLDBMySQLDB(root_config)
 
 class User{
-    constructor(req){
-        this.role = req.body.role;
-        this.username = req.body.username;
-        this.email = req.body.email;
-        this.password = req.body.password;
+    constructor(data){
+        this.role = data.role;
+        this.username = data.username;
+        this.email = data.email;
+        this.password = data.password;
     }
 }
 
@@ -20,7 +20,6 @@ const signInUserAsync = async (req, res) => {
     const [rows] = await db.connection.query('SELECT * FROM user WHERE username = ? AND password = ?', 
                                             [req.body.username,req.body.password]);
     const user = rows[0];
-    console.log(user)
 
     if (!user) {
       return res.status(404).json({
@@ -30,7 +29,7 @@ const signInUserAsync = async (req, res) => {
    const token = signToken(user)
    res.status(200).json({
     "token" : token,
-    "role": "user"
+    "role": user.role
    });
     
   } catch (error) {
@@ -40,6 +39,25 @@ const signInUserAsync = async (req, res) => {
   }
 };
 
+const signUpUserAsync = async (req, res) => {
+  try{
+    // Set the role of the user as patient because only patients
+    const user = new User(req.body)
+    
+    // Insert the manager into the manager table
+    const [result] = await db.connection.query('INSERT INTO user SET ?', user);
+    const insertedManagerId = result.insertId;
+    
+    res.status(200).json({
+      message: `User ${insertedManagerId} created successfully!`
+    });
+  
+  } catch (error) {
+    res.status(500).json({
+      error: error
+    });
+  }
+}
 
 
 module.exports = {
