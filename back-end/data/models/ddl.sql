@@ -3,12 +3,12 @@ CREATE DATABASE OPDdb;
 USE OPDdb;
 
 
-CREATE TABLE `User` (
-  `User_ID` INT NOT NULL AUTO_INCREMENT,
-  `Username` varchar(100) NOT NULL UNIQUE,
-  `Password` varchar(100) NOT NULL,
-  `Role` ENUM('Patient', 'Healthcare Professional', 'System Admin'),
-  PRIMARY KEY (`User_ID`)
+CREATE TABLE `user` (
+  `user_ID` INT NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL UNIQUE,
+  `password` varchar(100) NOT NULL,
+  `role` ENUM('Patient', 'Healthcare Professional', 'System Admin'),
+  PRIMARY KEY (`user_ID`)
 );
 
 CREATE TABLE `system_admin` (
@@ -67,7 +67,7 @@ CREATE TABLE `appointment` (
   `appointment_Time` TIME NOT NULL,
   `patient_ID` INT NOT NULL,
   `healthcare_professional_ID` INT NOT NULL,
-  `status` ENUM('Pending', 'Accepted', 'Declined', 'Cancelled', 'Completed'),
+  `status` ENUM('Pending', 'Accepted', 'Arrived', 'Missed', 'Declined', 'Cancelled', 'Completed'),
   PRIMARY KEY (`appointment_ID`),
   FOREIGN KEY (`patient_ID`) REFERENCES `patient`(`patient_ID`),
   FOREIGN KEY (`healthcare_Professional_ID`) REFERENCES `healthcare_professional`(`healthcare_professional_ID`) ON DELETE CASCADE ON UPDATE CASCADE

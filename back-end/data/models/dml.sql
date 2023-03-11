@@ -1,73 +1,23 @@
-DROP DATABASE IF EXISTS OPDdb;
-CREATE DATABASE OPDdb;
 USE OPDdb;
 
-CREATE TABLE `user` (
-  `user_ID` INT NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL UNIQUE,
-  `password` varchar(100) NOT NULL,
-  `role` ENUM('Patient', 'Healthcare Professional', 'System Admin'),
-  PRIMARY KEY (`user_ID`)
-);
+INSERT INTO user (Username, Password, Role) VALUES
+('admin', 'admin123', 'System Admin'),
+('johnDoe', 'password123', 'Patient'),
+('janeSmith', 'password456', 'Healthcare Professional');
 
-CREATE TABLE `system_admin` (
-  `admin_ID` INT NOT NULL AUTO_INCREMENT,
-  `user_ID` INT,
-  `first_name` varchar(25) NOT NULL,
-  `last_Name` varchar(25) NOT NULL,
-  `email` varchar(100) NOT NULL UNIQUE,
-  `phone_number` varchar(15),
-  PRIMARY KEY (`admin_iD`),
-  FOREIGN KEY (`user_iD`) REFERENCES `user`(`user_id`)  
-);
+INSERT INTO system_admin (user_ID, first_name, last_name, email, phone_number) VALUES
+(1, 'Anoshan', 'Jayahanthan', 'johndoe@example.com', '123-456-7890');
 
-CREATE TABLE `patient` (
-  `patient_ID` INT NOT NULL AUTO_INCREMENT,
-  `user_ID` INT,
-  `first_name` varchar(25) NOT NULL,
-  `last_name` varchar(25) NOT NULL,
-  `nic` varchar(20) NOT NULL UNIQUE,
-  `address` varchar(80) NOT NULL,
-  `email` varchar(100) NOT NULL UNIQUE,
-  `gender` ENUM('Male', 'Female', 'Other') NOT NULL,
-  `dob` DATE,
-  PRIMARY KEY (`patient_ID`),
-  FOREIGN KEY (`user_ID`) REFERENCES `user`(`user_ID`)
-);
+INSERT INTO patient (user_ID, first_name, last_name, nic, address, email, gender, dob) VALUES
+(2, 'John', 'Doe', '1234567890', '123 Main St', 'janesmith@example.com', 'Female', '1990-01-01');
 
-CREATE TABLE `healthcare_professional` (
-  `healthcare_professional_ID` INT NOT NULL AUTO_INCREMENT,
-  `user_ID` INT NOT NULL,
-  `first_name` varchar(25) NOT NULL,
-  `last_name` varchar(25) NOT NULL,
-  `email` varchar(100) NOT NULL UNIQUE,
-  `phone_number` varchar(15) NOT NULL,
-  `role` varchar(30) NOT NULL,
-  PRIMARY KEY (`healthcare_professional_ID`),
-  FOREIGN KEY (`user_ID`) REFERENCES `user`(`user_ID`)
-);
+INSERT INTO healthcare_professional (user_ID, first_name, last_name, email, phone_Number, role) VALUES
+(3, 'Chathura', 'Gunasekara', 'chathura@example.com', '555-555-5555', 'Doctor');
 
-CREATE TABLE `patient_record` (
-  `record_ID` INT NOT NULL AUTO_INCREMENT,
-  `patient_ID` INT NOT NULL,
-  `healthcare_Professional_ID` INT NOT NULL,
-  `disease_Reason` varchar(40) NOT NULL,
-  `prescriptions` varchar(200) NOT NULL,
-  `treatment_Plans` varchar(200) NOT NULL,
-  `progress_Notes` varchar(200) NOT NULL,
-  PRIMARY KEY (`record_ID`),
-  FOREIGN KEY (`patient_ID`) REFERENCES `patient`(`patient_ID`),
-  FOREIGN KEY (`healthcare_professional_ID`) REFERENCES `healthcare_professional`(`healthcare_professional_ID`)
-);
+INSERT INTO patient_record (patient_ID, healthcare_Professional_ID, disease_Reason, prescriptions, treatment_Plans, progress_Notes) VALUES
+(1, 1, 'Fever', 'Ibuprofen', 'Rest and hydration', 'Patient feels better after taking medication');
 
-CREATE TABLE `appointment` (
-  `appointment_ID` INT NOT NULL AUTO_INCREMENT,
-  `appointment_Date` DATE NOT NULL,
-  `appointment_Time` TIME NOT NULL,
-  `patient_ID` INT NOT NULL,
-  `healthcare_professional_ID` INT NOT NULL,
-  `status` ENUM('Pending', 'Accepted', 'Arrived', 'Missed', 'Declined', 'Cancelled', 'Completed'),
-  PRIMARY KEY (`appointment_ID`),
-  FOREIGN KEY (`patient_ID`) REFERENCES `patient`(`patient_ID`),
-  FOREIGN KEY (`healthcare_Professional_ID`) REFERENCES `healthcare_professional`(`healthcare_professional_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+
+INSERT INTO appointment (appointment_Date, appointment_Time, patient_ID, healthcare_professional_ID, status) VALUES
+('2023-03-15', '10:00:00', 1, 1, 'Pending'),
+('2023-03-20', '14:30:00', 1, 1, 'Accepted');
