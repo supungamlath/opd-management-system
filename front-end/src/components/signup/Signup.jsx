@@ -79,12 +79,12 @@ export default function Login() {
           }
         })
         .then((res) => {
-          console.log('Successfully logged patient');
+          console.log('Successfully signed up patient');
           localStorage.setItem('jwt', res.data.token);
           // console.log(res.data)
           signIn(res.data);
           // console.log(localStorage.jwt)
-          popAlert(`Welcome Back`);
+          popAlert(`Signed Up Successfully`);
           navigate('/');
           return res.data;
         })
@@ -92,7 +92,7 @@ export default function Login() {
           (error) => {
             if (error.response) {
               // Request made and server responded
-              setErrorMessages("Invalid Username or Password")
+              setErrorMessages("Please check your details again")
             } else if (error.request) {
               // The request was made but no response was received
               console.log(error.request)
@@ -194,6 +194,7 @@ export default function Login() {
                 autoFocus
                 onChange={handleChange}
                 value={signup.confirm_password}
+                check = {signup.password === signup.confirm_password}
               />
             </div>
 
