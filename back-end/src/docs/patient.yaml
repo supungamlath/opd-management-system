@@ -52,7 +52,7 @@ components:
         username:
           type: string
           description: Username
-          example: 'John123'
+          example: 'JohnDoe'
         password:
           type: string
           description: Password
