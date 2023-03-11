@@ -29,7 +29,7 @@ class Appointment {
         return rows[0];
     }
 
-    static async findByProfessional_ID(patient_id) {
+    static async findByProfessional_ID(professional_id) {
         const [rows] = await db.connection.query('SELECT * FROM appointment WHERE professional_id = ?', [professional_id]);
         return rows[0];
     }

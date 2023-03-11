@@ -12,7 +12,7 @@ class Record {
     }
 
     static createFromRequest(req) {
-        return new Record(req.body.username, req.body.password, req.body.first_name, req.body.last_name, req.body.nic, req.body.address, req.body.email, req.body.gender, req.body.dob);
+        return new Record(req.body.patient_id, req.body.professional_id, req.body.disease_reason, req.body.prescriptions, req.body.treatment_plans, req.body.progress_notes);
     }
 
     async save() {
@@ -20,24 +20,19 @@ class Record {
         return rows;
     }
 
-    static async findByPatientID(username, password) {
-        const [rows] = await db.connection.query('SELECT * FROM patient WHERE username = ? AND password = ?', [username, password]);
+    static async findByRecordID(record_id) {
+        const [rows] = await db.connection.query('SELECT * FROM patient_record WHERE ', [record_id]);
         return rows[0];
     }
 
-    static async findByAppointmentID(username) {
-        const [rows] = await db.connection.query('SELECT * FROM patient WHERE username = ?', [username]);
+    static async findByPatientID(patient_id) {
+        const [rows] = await db.connection.query('SELECT * FROM patient_record WHERE ', [patient_id]);
         return rows[0];
     }
 
-    static async findByEmail(email) {
-        const [rows] = await db.connection.query('SELECT * FROM patient WHERE email = ?', [email]);
+    static async findByProfessional_ID(professional_id) {
+        const [rows] = await db.connection.query('SELECT * FROM patient_record WHERE professional_id = ?', [professional_id]);
         return rows[0];
-    }
-
-    static async getAllPatients() {
-        const [rows] = await db.connection.query('SELECT * FROM patient');
-        return rows;
     }
 }
 
