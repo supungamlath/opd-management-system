@@ -37,6 +37,16 @@ export default function Login() {
 
 
   const handleSubmit = async (submit) => {
+    // check if passwords match
+    if (signup.password !== signup.confirm_password) {
+      setErrorMessages('Passwords do not match');
+      // delay for 3 seconds
+      setTimeout(() => {
+        setErrorMessages('');
+      }, 3000);
+      
+      return;
+    }
 
     submit.preventDefault();
 
