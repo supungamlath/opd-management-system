@@ -18,8 +18,8 @@ const patient_config = {
 
 const prof_config = {
     host:"localhost",
-    user:"admin",
-    password:"admin",
+    user:"professional",
+    password:"professional",
     database:"OPDdb"
 }
 
