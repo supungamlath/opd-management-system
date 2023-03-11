@@ -5,6 +5,8 @@ paths:
       description: Create an appointment for a patient
       tags:
         - Appointment
+      security:
+        - bearerAuth: []
       requestBody:
         description: Created appointment object
         content:
@@ -21,8 +23,11 @@ components:
   securitySchemes:
     bearerAuth:
       type: http
+      in: header
+      name: Authorization
+      description: Enter your access token
       scheme: bearer
-      bearerFormat: JWT 
+      bearerFormat: JWT
   schemas:
     Appointment:
       type: object
@@ -47,6 +52,3 @@ components:
           type: string
           description: NIC
           example: 'Pending'
-
-security:
-  - bearerAuth: []
