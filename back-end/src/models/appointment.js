@@ -2,16 +2,16 @@ const { MySQLDB } = require('../services/database');
 const db = new MySQLDB();
 
 class Appointment {
-    constructor(appointment_date, appointment_time, patient_id, professional_id, status) {
+    constructor(appointment_date, appointment_time, patient_ID, professional_ID, status) {
         this.appointment_date = appointment_date;
         this.appointment_time = appointment_time;
-        this.patient_id = patient_id;
-        this.professional_id = professional_id;
+        this.patient_ID = patient_ID;
+        this.professional_ID = professional_ID;
         this.status = status;
     }
 
     static createFromRequest(req) {
-        return new Appointment(req.body.appointment_date, req.body.appointment_time, req.body.patient_id, req.body.professional_id, req.body.status);
+        return new Appointment(req.body.appointment_date, req.body.appointment_time, req.body.patient_ID, req.body.professional_ID, req.body.status);
     }
 
     async save() {
@@ -24,13 +24,13 @@ class Appointment {
         return rows[0];
     }
 
-    static async findByPatientID(patient_id) {
-        const [rows] = await db.connection.query('SELECT * FROM appointment WHERE patient_id = ?', [patient_id]);
+    static async findByPatientID(patient_ID) {
+        const [rows] = await db.connection.query('SELECT * FROM appointment WHERE patient_ID = ?', [patient_ID]);
         return rows[0];
     }
 
-    static async findByProfessional_ID(professional_id) {
-        const [rows] = await db.connection.query('SELECT * FROM appointment WHERE professional_id = ?', [professional_id]);
+    static async findByProfessional_ID(professional_ID) {
+        const [rows] = await db.connection.query('SELECT * FROM appointment WHERE professional_ID = ?', [professional_ID]);
         return rows[0];
     }
 
