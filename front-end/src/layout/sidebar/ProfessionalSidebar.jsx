@@ -30,14 +30,14 @@ function ProfessionalSidebar(props) {
           <Link to={"/"}>
             <li>
               <DashboardIcon className="icon" />
-              {!isSidebarActive && <p>Appointments</p>}
+              {!isSidebarActive && <p>All Appointments</p>}
             </li>
           </Link>
 
-          <Link to={"/patientdashboard/reports"}>
+          <Link to={"/profdashboard/today"}>
             <li>
-              <MoneyIcon className="icon" />
-              {!isSidebarActive && <p>Reports</p>}
+              <DashboardIcon className="icon" />
+              {!isSidebarActive && <p>Today's Appointments</p>}
             </li>
           </Link>
 

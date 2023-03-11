@@ -1,4 +1,4 @@
-import "./appointments.scss"
+import "./todayAppointments.scss"
 import React from 'react'
 import useApi from '../../../hooks/useApi';
 import { DataGrid } from '@mui/x-data-grid';
@@ -8,7 +8,7 @@ import popAction from "../../../helpers/popAction";
 import apiCrud from "../../../api/apiCrud";
 import Button from '@mui/material/Button';
 
-function Appointments() {
+function TodayAppointments() {
 
   // const { res } = useApi("/api/appointment/get_appointments", "GET")
   // console.log(res)
@@ -94,7 +94,7 @@ function Appointments() {
     <div className='overview'>
 
       <div className="title">
-        <h2>All Appointments</h2>
+        <h2>Appointments for Today</h2>
       </div>
       <hr />
       <Box sx={{ height: 400, width: '100%' }}>
@@ -126,4 +126,4 @@ function Appointments() {
   )
 }
 
-export default Appointments
+export default TodayAppointments;

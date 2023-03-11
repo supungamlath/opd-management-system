@@ -1,5 +1,6 @@
 @import '../../../scss/layout/colors';
 @import '../../../scss/utilities/variables';
+@import '../../../scss/utilities/mixins';
 
 .overview {
   padding: 2em;
@@ -72,5 +73,47 @@
   }
   .overview .content-wrapper{
     flex-direction: column;
+  }
+}
+
+.title {
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+
+  .loan-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 1em;
+    width: max-content;
+
+      button {
+        @include slideSolidBtn;
+        border-radius: 20px;
+        font-size: 1rem;
+        width: fit-content;
+        height: fit-content;
+      }
+  }
+}
+
+.actions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1em;
+  width: max-content;
+
+  button {
+    @include slideSolidBtn;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    width: fit-content;
+    height: fit-content;
   }
 }

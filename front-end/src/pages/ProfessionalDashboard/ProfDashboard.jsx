@@ -4,10 +4,10 @@ import { Routes, Route } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import Sidebar from "../../layout/sidebar/UserSidebar";
+import ProfessionalSidebar from "../../layout/sidebar/ProfessionalSidebar";
 import Navbar from "../../layout/navbar/Navbar";
 import Appointments from "./Appointments/Appointments";
-import Reports from "./Reports/Reports";
-import NewAppointment from "../NewAppointment/NewAppointment";
+import TodayAppointments from "./TodayAppointments/TodayAppointments";
 
 
 function ProfDashboard() {
@@ -32,7 +32,7 @@ function ProfDashboard() {
 
   return (
     <div className="userdashboard">
-      <Sidebar
+      <ProfessionalSidebar
         isSidebarActive={isSidebarActive}
         toggleSidebar={toggleSidebar}
       />
@@ -50,8 +50,7 @@ function ProfDashboard() {
         <main className="userdashboard-main">
           <Routes>
             <Route path="/" element={<Appointments />} />
-            <Route path="/reports" element={<Reports />} />
-            <Route path="/newappointment" element={<NewAppointment />} />
+            <Route path="/today" element={<TodayAppointments />} />
           </Routes>
         </main>
       </div>
