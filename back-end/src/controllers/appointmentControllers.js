@@ -11,6 +11,7 @@ const createAppointment = async (req, res) => {
         try {
             const token = req.headers.authorization.replace('Bearer ', '')
             const patient = verifyToken(token);
+            console.log(patient)
 
             if (patient) {
                 const appointment = Appointment.createFromRequest(req)
