@@ -37,11 +37,35 @@ export default function Login() {
 
 
   const handleSubmit = async (submit) => {
+    // check if passwords match
+    // check if password is good enough
+    if (signup.password.length < 6) {
+      setErrorMessages('Password must be at least 6 characters');
+
+      // delay for 10 seconds
+      setTimeout(() => {
+        setErrorMessages('');
+      }, 10000);
+
+      return;
+    }
+
+    
+    if (signup.password !== signup.confirm_password) {
+      setErrorMessages('Passwords do not match');
+
+      // delay for 10 seconds
+      setTimeout(() => {
+        setErrorMessages('');
+      }, 10000);
+
+      return;
+    }
 
     submit.preventDefault();
 
     await axios({
-      url:  `/api/patient/signup`,
+      url:  `/api/user/signup`,
       method: 'POST',
       data: {
         username: signup.username.trim(),

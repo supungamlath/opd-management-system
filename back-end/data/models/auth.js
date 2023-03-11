@@ -14,7 +14,7 @@ class User{
 }
 
 // Async function to sign in a user
-const signInUserAsync = async (req, res) => {
+const logInUserAsync = async (req, res) => {
     try{
     // Select the user from the user table
     const [rows] = await db.connection.query('SELECT * FROM user WHERE username = ? AND password = ?', 
@@ -64,6 +64,6 @@ const signUpUserAsync = async (req, res) => {
 
 module.exports = {
     User,
-    signInUserAsync,
+    logInUserAsync,
     signUpUserAsync
   }

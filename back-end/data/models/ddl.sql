@@ -3,12 +3,12 @@ CREATE DATABASE OPDdb;
 USE OPDdb;
 
 
-CREATE TABLE `user` (
-  `user_ID` INT NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL UNIQUE,
-  `password` varchar(100) NOT NULL,
-  `role` ENUM('Patient', 'Healthcare Professional', 'System Admin'),
-  PRIMARY KEY (`user_ID`)
+CREATE TABLE `User` (
+  `User_ID` INT NOT NULL AUTO_INCREMENT,
+  `Username` varchar(100) NOT NULL UNIQUE,
+  `Password` varchar(100) NOT NULL,
+  `Role` ENUM('Patient', 'Healthcare Professional', 'System Admin'),
+  PRIMARY KEY (`User_ID`)
 );
 
 CREATE TABLE `system_admin` (
