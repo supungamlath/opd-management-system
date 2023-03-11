@@ -4,6 +4,7 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/Auth-context';
 import popAlert from '../../helpers/popAlert';
+import bcrypt from 'bcryptjs'
 
 export default function Login() {
 
@@ -40,7 +41,7 @@ export default function Login() {
       method: 'POST',
       data: {
         username: login.username.trim(),
-        password: login.password
+        password: bcrypt.hashSync(login.password, '$2a$10$CwTycUXWue0Thq9StjUM0u')
       }
     })
     .then((res) => {
@@ -60,7 +61,7 @@ export default function Login() {
           method: 'POST',
           data: {
             username: login.username.trim(),
-            password: login.password
+            password: bcrypt.hashSync(login.password, '$2a$10$CwTycUXWue0Thq9StjUM0u')
           }
         })
         .then((res) => {

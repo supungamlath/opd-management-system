@@ -4,6 +4,7 @@ import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/Auth-context';
 import popAlert from '../../helpers/popAlert';
+import bcrypt from 'bcryptjs'
 
 export default function Login() {
 
@@ -19,7 +20,7 @@ export default function Login() {
     password: '',
     confirm_password: '',
     name: '',
-    role: 'patient',
+    role: 'Patient',
     email: '',
     nic: '',
   });
@@ -40,25 +41,13 @@ export default function Login() {
     // check if passwords match
     // check if password is good enough
     if (signup.password.length < 6) {
-      setErrorMessages('Password must be at least 6 characters');
-
-      // delay for 10 seconds
-      setTimeout(() => {
-        setErrorMessages('');
-      }, 10000);
-
+      popAlert('Password must be at least 6 characters long');
       return;
     }
 
     
     if (signup.password !== signup.confirm_password) {
-      setErrorMessages('Passwords do not match');
-
-      // delay for 10 seconds
-      setTimeout(() => {
-        setErrorMessages('');
-      }, 10000);
-
+      popAlert('Passwords do not match');
       return;
     }
 
@@ -69,8 +58,7 @@ export default function Login() {
       method: 'POST',
       data: {
         username: signup.username.trim(),
-        password: signup.password,
-        confirm_password: signup.confirm_password,
+        password: bcrypt.hashSync(signup.password, '$2a$10$CwTycUXWue0Thq9StjUM0u'),
         name: signup.name,
         role: signup.role,
         email: signup.email,
