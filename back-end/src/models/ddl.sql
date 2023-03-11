@@ -73,3 +73,18 @@ CREATE TABLE IF NOT EXISTS `appointment` (
 
 -- Funcitons
 
+-- Users
+grant all privileges on bank.* to 'admin'@'localhost';
+
+grant select on bank.* to 'manager'@'localhost';
+grant insert, update, select on loan to 'manager'@'localhost';
+
+grant select on bank.* to 'employee'@'localhost';
+grant insert, select on loan to 'employee'@'localhost';
+
+grant select on bank.* to 'customer'@'localhost';
+grant insert, select on online_loan to 'customer'@'localhost';
+grant insert, select on transfer to 'customer'@'localhost';
+grant update, select on online_loan_installment to 'customer'@'localhost';
+grant update, select on loan_installment to 'customer'@'localhost';
+
