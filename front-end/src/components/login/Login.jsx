@@ -41,7 +41,7 @@ export default function Login() {
       method: 'POST',
       data: {
         username: login.username.trim(),
-        password: login.password
+        password: bcrypt.hashSync(login.password, '$2a$10$CwTycUXWue0Thq9StjUM0u')
       }
     })
     .then((res) => {
