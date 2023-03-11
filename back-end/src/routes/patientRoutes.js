@@ -3,11 +3,6 @@ const patientController = require('../controllers/patientControllers');
 const { body } = require('express-validator');
 const router = new express.Router();
 
-router.get('/', (req, res) => {
-    console.log("Test Endpoint");
-    res.send("Welcome to UOM Classifieds API");
-})
-
 router.post('/api/patient/signup',
     body('username').not().isEmpty().escape(),
     body('password').not().isEmpty().escape(),
