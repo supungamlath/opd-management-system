@@ -5,6 +5,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import LoginLanding from "./pages/LoginLanding/LoginLanding";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import { AuthContext } from "./context/Auth-context";
+import PatientDashboard from "./pages/PatientDashboard/PatientDashboard";
+import SuperAdminDashboard from "./pages/SuperAdminDashboard/SuperAdminDashboard";
+import HPDashboard from "./pages/HPDashboard/HPDashboard";
+
 
 
 function App() {
@@ -13,10 +17,30 @@ function App() {
   return (
     <div className="App">
       {jwt ? (
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        (role === "System Admin" || role === "Healthcare Professional") ? (
+          (role === "System Admin")?
+          (
+            <Routes>
+            <Route path="/superadmin/*" element={<SuperAdminDashboard />} />
+            <Route path="*" element={<Navigate to="/superadmin" replace />} />
+          </Routes>
+          ):
+          (
+            <Routes>
+            <Route path="/hpdashboard/*" element={<HPDashboard />} />
+            <Route path="*" element={<Navigate to="/hpdashboard" replace />} />
+          </Routes>
+          )
+          
+        ) : (
+          <Routes>
+            <Route path="/patientdashboard/*" element={<PatientDashboard />} />
+            <Route
+              path="*"
+              element={<Navigate to="/patientdashboard" replace />}
+            />
+          </Routes>
+        )
       ) : (
         <Routes>
           <Route path="/" element={<LoginLanding />} />
