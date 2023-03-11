@@ -3,9 +3,9 @@ import "./hpdashboard.scss";
 import { Routes, Route } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
-import Sidebar from "../../layout/sidebar/UserSidebar";
+import HPSidebar from "../../layout/sidebar/HPSidebar";
 import Navbar from "../../layout/navbar/Navbar";
-import Appointments from "./Appointments/Appointments";	
+import Appointments from "./Appointments/Appointments";
 
 function HPdashboard() {
   // control the responsive sidebar
@@ -24,12 +24,12 @@ function HPdashboard() {
     if (isSmallScreen) {
       setIsSidebarActive(true);
     }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="HPdashboard">
-      <Sidebar
+      <HPSidebar
         isSidebarActive={isSidebarActive}
         toggleSidebar={toggleSidebar}
       />
@@ -46,7 +46,7 @@ function HPdashboard() {
 
         <main className="HPdashboard-main">
           <Routes>
-            <Route path="/" element={<Appointments/>} />
+            <Route path="/" element={<Appointments />} />
           </Routes>
         </main>
       </div>
