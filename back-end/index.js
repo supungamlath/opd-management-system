@@ -1,31 +1,28 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const {server_config} = require("./src/config/config")
-const app = express()
-const port = server_config.port
+const express = require('express');
+const swaggerUI = require('swagger-ui-express')
 
-// API route functions from the data models
-const authAPI = require('./data/models/auth')
+const app = express();
 
-// Use the body-parser middleware to parse the request body
-app.use(bodyParser.json());
+const testRoutes = require('./src/routes/testRoutes');
+const patientRoutes = require('./src/routes/patientRoutes');
+const { swaggerSpecs } = require('./src/services/swagger')
+
+// Use the middleware to parse the request body
+app.use(express.json());
 // Accept these headers to avoid CORS errors on the client side
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
-
 ///////////////////// Routes /////////////////////
-// Default Route
-app.get('/', (req, res) => res.send("Welcome to Kernel Panic, gammac neh!"))
+app.use(testRoutes);
+app.use(patientRoutes);
 
-// Auth routes
-app.post('/api/user/login', authAPI.logInUserAsync)
-app.post('/api/user/signup', authAPI.signUpUserAsync)
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpecs))
 
-// log listining port
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+const PORT = process.env.NODE_PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}!`);
+});

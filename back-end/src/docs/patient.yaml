@@ -1,0 +1,87 @@
+paths:
+  /api/patient/signup:
+    post:
+      summary: Create patient
+      description: Register a new patient
+      tags:
+        - Patient
+      requestBody:
+        description: Created patient object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '200':
+            description: Success
+        '500':
+            description: Error
+
+  /api/patient/login:
+    post:
+      summary: Login patient
+      description: Logs patient into the system
+      tags:
+        - Patient
+      requestBody:
+        description: Created patient object
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Patientname
+                  example: 'John123'
+                password:
+                  type: string
+                  description: Password
+                  example: '123456'
+      responses:
+        '200':
+          description: Success
+        '500':
+          description: Error
+
+components:
+  schemas:
+    Patient:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Username
+          example: 'John123'
+        password:
+          type: string
+          description: Password
+          example: '123456'
+        first_name:
+          type: string
+          description: First Name
+          example: 'John'
+        last_name:
+          type: string
+          description: Last Name
+          example: 'Doe'
+        nic:
+          type: string
+          description: NIC
+          example: '2001509042242'
+        address:
+          type: string
+          description: Address
+          example: 'Ruby Street, Colombo'
+        email:
+          type: string
+          description: Email
+          example: 'example@mail.com'
+        gender:
+          type: string
+          description: Gender
+          example: 'Female'
+        dob:
+          type: string
+          description: Date of Birth
+          example: '1999-12-31'
