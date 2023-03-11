@@ -5,6 +5,15 @@ import React, { useContext } from "react";
 function Dashboard(){
     const { role, jwt } = useContext(AuthContext);
 
+    function signOut() {    
+        localStorage.removeItem('jwt')
+        setLocalStorage('auth', {})
+        setAuth({})
+        popAlert(`See you soon`)
+        navigate('/')
+        setTimeout(()=> window.location.reload(), 1200)
+    }
+
     return (
         <div>
             <h1>Dashboard</h1>
@@ -14,7 +23,8 @@ function Dashboard(){
                 <b>jwttoken:</b> {jwt}
             </p>
             {/* add a button to clear jwt token */}
-            <button onClick={() => localStorage.removeItem('jwt')}>Logout</button>
+            <button onClick={signOut}>Sign Out</button>
+
         </div>
     )
 }
