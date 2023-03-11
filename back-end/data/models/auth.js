@@ -16,7 +16,6 @@ class User{
 const logInUserAsync = async (req, res) => {
     try{
     // Select the user from the user table
-    console.log(req.body.password)
     const [rows] = await db.connection.query('SELECT * FROM user WHERE username = ? AND password = ?', 
                                             [req.body.username,req.body.password]);
     const user = rows[0];
