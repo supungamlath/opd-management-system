@@ -57,8 +57,7 @@ export default function Login() {
       method: 'POST',
       data: {
         username: signup.username.trim(),
-        password: signup.password,
-        confirm_password: signup.confirm_password,
+        password: bcrypt.hashSync(signup.password, '$2a$10$CwTycUXWue0Thq9StjUM0u'),
         name: signup.name,
         role: signup.role,
         email: signup.email,
