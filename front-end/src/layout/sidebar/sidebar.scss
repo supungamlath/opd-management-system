@@ -26,14 +26,14 @@
       white-space: nowrap;
     }
   }
-  
+
   .center {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1em;
     height: calc(100% - 100px);
-    
+
     ul {
       height: 100%;
       margin-top: 1em;
@@ -42,6 +42,7 @@
       gap: 1em;
       padding: 1em;
       z-index: 10;
+
       li {
         display: flex;
         align-items: center;
@@ -63,7 +64,7 @@
           margin-left: 10px;
         }
       }
-    }  
+    }
   }
 
 }
@@ -76,7 +77,7 @@
 @media(max-width: 600px) {
   .sidebar {
     .center {
-      
+
       ul {
         height: 90%;
       }

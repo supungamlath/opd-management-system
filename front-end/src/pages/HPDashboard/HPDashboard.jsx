@@ -3,8 +3,8 @@ import "./hpdashboard.scss";
 import { Routes, Route } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
-import HPSidebar from "../../layout/sidebar/HPSidebar";
 import Navbar from "../../layout/navbar/Navbar";
+import ProfessionalSidebar from "../../layout/sidebar/ProfessionalSidebar";
 import Appointments from "./Appointments/Appointments";
 
 function HPdashboard() {
@@ -29,7 +29,7 @@ function HPdashboard() {
 
   return (
     <div className="HPdashboard">
-      <HPSidebar
+      <ProfessionalSidebar
         isSidebarActive={isSidebarActive}
         toggleSidebar={toggleSidebar}
       />
