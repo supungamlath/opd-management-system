@@ -1,10 +1,10 @@
 paths:
-  /api/appointment/create:
+  /api/professional/create-appointment:
     post:
       summary: Create appointment
       description: Create an appointment for a patient
       tags:
-        - Appointment
+        - Professional
       security:
         - bearerAuth: []
       requestBody:
@@ -13,6 +13,20 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Appointment'
+      responses:
+        '200':
+            description: Success
+        '500':
+            description: Error
+
+  /api/professional/get-appointments:
+    get:
+      summary: Get appointments
+      description: Get all appointments for a professional
+      tags:
+        - Professional
+      security:
+        - bearerAuth: []
       responses:
         '200':
             description: Success

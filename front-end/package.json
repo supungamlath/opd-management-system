@@ -1,7 +1,7 @@
 {
   "name": "front-end",
   "version": "0.1.0",
-  "localhost": "http://localhost:5000",
+  "localhost": "http://localhost:8080",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
