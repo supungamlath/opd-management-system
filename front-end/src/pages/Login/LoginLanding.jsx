@@ -28,7 +28,10 @@ function Homepage() {
           </p>
 
           <div className="homepage-sign-btns">
-            <CustomizedDialogs title="Sign In" btn="Sign In">
+            <CustomizedDialogs title="Log In" btn="Log In">
+              <Login />
+            </CustomizedDialogs>
+            <CustomizedDialogs title="Sign Up" btn="Sign Up">
               <Login />
             </CustomizedDialogs>
           </div>
