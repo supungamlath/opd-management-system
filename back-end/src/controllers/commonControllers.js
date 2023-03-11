@@ -21,7 +21,27 @@ const signInUser = async (req, res) => {
                 });
             }
             else {
+
                 const professional = await Professional.findByUsernameAndPassword(req.body.username, req.body.password);
+                if (professional) {
+                    const token = signToken(professional);
+                    res.status(200).json({
+                        message: 'User signed in successfully',
+                        token: token,
+                        role: "Professional"
+                    });
+                }
+                else {
+                    const system_admin = await System_Admin.findByUsernameAndPassword(req.body.username, req.body.password);
+                    if (system_admin) {
+                        const token = signToken(system_admin);
+                        res.status(200).json({
+                            message: 'User signed in successfully',
+                            token: token,
+                            role: "System_Admin"
+                        });
+                    }
+                }
             }
         }
         catch (error) {
