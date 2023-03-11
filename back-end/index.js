@@ -23,6 +23,7 @@ app.get('/', (req, res) => res.send("Welcome to Kernel Panic, gammac neh!"))
 
 // Auth routes
 app.post('/api/user/signin', authAPI.signInUserAsync)
+app.post('/api/user/signup', authAPI.signUpUserAsync)
 
 // log listining port
 app.listen(port, () => {
