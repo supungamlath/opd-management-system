@@ -6,28 +6,28 @@ const admin_config = {
     host:"localhost",
     user:"admin",
     password:"admin",
-    database:"opdDB"
+    database:"OPDdb"
 }
 
 const patient_config = {
     host:"localhost",
     user:"admin",
     password:"admin",
-    database:"opdDB"
+    database:"OPDdb"
 }
 
 const prof_config = {
     host:"localhost",
     user:"admin",
     password:"admin",
-    database:"opdDB"
+    database:"OPDdb"
 }
 
 const root_config = {
     host:"localhost",
     user:"root",
     password:"root",
-    database:"opdDB"
+    database:"OPDdb"
 }
 
 const secret = 'secret'
