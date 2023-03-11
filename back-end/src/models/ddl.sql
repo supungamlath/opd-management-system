@@ -73,6 +73,15 @@ CREATE TABLE IF NOT EXISTS `appointment` (
 
 -- Funcitons
 
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
+flush privileges;
+CREATE USER 'patient'@'localhost' IDENTIFIED BY 'patient';
+flush privileges;
+CREATE USER 'professional'@'localhost' IDENTIFIED BY 'professional';
+flush privileges;
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+flush privileges;
+
 -- Grant all priviledges for all users
 grant all privileges on OPDdb.* to 'root'@'localhost';
 grant all privileges on OPDdb.healthcare_professional to 'admin'@'localhost';
