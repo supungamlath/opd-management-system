@@ -1,7 +1,9 @@
 const { validationResult } = require('express-validator');
 
 const { signToken } = require('../services/jwt')
-const { Patient } = require('../models/patient');
+const { Patient } = require('../models/patient')
+const { Professional } = require('../models/professional');
+const { System_Admin } = require('../models/system_admin');
 
 const signInUser = async (req, res) => {
     const errors = validationResult(req);
@@ -21,7 +23,30 @@ const signInUser = async (req, res) => {
                 });
             }
             else {
+
                 const professional = await Professional.findByUsernameAndPassword(req.body.username, req.body.password);
+                if (professional) {
+                    const token = signToken(professional);
+                    res.status(200).json({
+                        message: 'User signed in successfully',
+                        token: token,
+                        role: "Professional"
+                    });
+                }
+                else {
+                    const system_admin = await System_Admin.findByUsernameAndPassword(req.body.username, req.body.password);
+                    if (system_admin) {
+                        const token = signToken(system_admin);
+                        res.status(200).json({
+                            message: 'User signed in successfully',
+                            token: token,
+                            role: "System_Admin"
+                        });
+                    }
+                    else {
+                        throw Error("Invalid User")
+                    }
+                }
             }
         }
         catch (error) {

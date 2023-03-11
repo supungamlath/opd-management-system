@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS OPDdb;
 USE OPDdb;
 
-
 CREATE TABLE IF NOT EXISTS  `system_admin` (
   `admin_ID` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(50) NOT NULL UNIQUE, 
@@ -24,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `email` varchar(100) NOT NULL UNIQUE,
   `gender` ENUM('Male', 'Female', 'Other') NOT NULL,
   `dob` DATE,
+  `appointments` Int Default 10,
   PRIMARY KEY (`patient_ID`)
 );
 
@@ -73,3 +73,22 @@ CREATE TABLE IF NOT EXISTS `appointment` (
 
 -- Funcitons
 
+-- Users for the database
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
+flush privileges;
+CREATE USER 'patient'@'localhost' IDENTIFIED BY 'patient';
+flush privileges;
+CREATE USER 'professional'@'localhost' IDENTIFIED BY 'professional';
+flush privileges;
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+flush privileges;
+
+-- Grant all priviledges for all users
+grant all privileges on OPDdb.* to 'root'@'localhost';
+grant all privileges on OPDdb.healthcare_professional to 'admin'@'localhost';
+
+grant update on OPDdb.healthcare_professional to 'professional'@'localhost';
+grant all privileges on OPDdb.appointment to 'professional'@'localhost';
+
+grant all privileges on OPDdb.patient to 'patient'@'localhost'; 
+grant all privileges on OPDdb.appointment to 'patient'@'localhost'; 

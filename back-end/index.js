@@ -5,6 +5,8 @@ const app = express();
 
 const testRoutes = require('./src/routes/testRoutes');
 const patientRoutes = require('./src/routes/patientRoutes');
+const commonRoutes = require('./src/routes/commonRoutes')
+const appointmentRoutes = require('./src/routes/appointmentRoutes')
 const { swaggerSpecs } = require('./src/services/swagger')
 
 // Use the middleware to parse the request body
@@ -19,6 +21,8 @@ app.use(function (req, res, next) {
 ///////////////////// Routes /////////////////////
 app.use(testRoutes);
 app.use(patientRoutes);
+app.use(commonRoutes)
+app.use(appointmentRoutes)
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpecs))
 

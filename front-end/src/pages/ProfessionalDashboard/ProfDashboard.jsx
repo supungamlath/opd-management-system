@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import "./hpdashboard.scss";
+import "./userdashboard.scss";
 import { Routes, Route } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import Sidebar from "../../layout/sidebar/UserSidebar";
+import ProfessionalSidebar from "../../layout/sidebar/ProfessionalSidebar";
 import Navbar from "../../layout/navbar/Navbar";
-import Overview from "./Overview/Appointments";
-import Appointments from "./Appointments/Appointments";	
+import Appointments from "./Appointments/Appointments";
+import TodayAppointments from "./TodayAppointments/TodayAppointments";
 
-function HPDashboard() {
+
+function ProfDashboard() {
   // control the responsive sidebar
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
@@ -25,29 +27,30 @@ function HPDashboard() {
     if (isSmallScreen) {
       setIsSidebarActive(true);
     }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="HPdashboard">
-      <Sidebar
+    <div className="userdashboard">
+      <ProfessionalSidebar
         isSidebarActive={isSidebarActive}
         toggleSidebar={toggleSidebar}
       />
       <div
         className={
           isSidebarActive
-            ? "HPdashboard-container collapse"
-            : "HPdashboard-container"
+            ? "userdashboard-container collapse"
+            : "userdashboard-container"
         }
       >
         <header>
           <Navbar isSidebarActive={isSidebarActive} />
         </header>
 
-        <main className="HPdashboard-main">
+        <main className="userdashboard-main">
           <Routes>
-            <Route path="/" element={<Appointments/>} />
+            <Route path="/" element={<Appointments />} />
+            <Route path="/today" element={<TodayAppointments />} />
           </Routes>
         </main>
       </div>
@@ -55,4 +58,4 @@ function HPDashboard() {
   );
 }
 
-export default HPdashboard;
+export default ProfDashboard;
