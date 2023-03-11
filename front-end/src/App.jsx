@@ -16,21 +16,21 @@ function App() {
   return (
     <div className="App">
       {jwt ? (
-        (role === "System Admin" || role === "Healthcare Professional") ? (
-          (role === "System Admin")?
-          (
-            <Routes>
-            <Route path="/superadmin/*" element={<SuperAdminDashboard />} />
-            <Route path="*" element={<Navigate to="/superadmin" replace />} />
-          </Routes>
-          ):
-          (
-            <Routes>
-            <Route path="/hpdashboard/*" element={<HPDashboard />} />
-            <Route path="*" element={<Navigate to="/hpdashboard" replace />} />
-          </Routes>
-          )
-          
+        (role === "System_Admin" || role === "Healthcare Professional") ? (
+          (role === "System_Admin") ?
+            (
+              <Routes>
+                <Route path="/superadmin/*" element={<SuperAdminDashboard />} />
+                <Route path="*" element={<Navigate to="/superadmin" replace />} />
+              </Routes>
+            ) :
+            (
+              <Routes>
+                <Route path="/hpdashboard/*" element={<HPDashboard />} />
+                <Route path="*" element={<Navigate to="/hpdashboard" replace />} />
+              </Routes>
+            )
+
         ) : (
           <Routes>
             <Route path="/patientdashboard/*" element={<UserDashboard />} />
@@ -45,7 +45,7 @@ function App() {
           <Route path="/" element={<LoginLanding />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        
+
       )}
     </div>
   );
