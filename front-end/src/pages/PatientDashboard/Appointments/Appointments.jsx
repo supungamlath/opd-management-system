@@ -10,12 +10,13 @@ import Button from '@mui/material/Button';
 
 function Appointments() {
 
-  const { res } = useApi("/api/patient/get-appointments", "GET")
+  const { data } = useApi("/api/patient/get-appointments", "GET")
   // console.log(res)
   // get columns and rows from data
   // const columns = data ? data.columns : []
-  const rows = res ? res.data.rows : []
-
+  const rows = data ? data.rows : []
+  
+  console.log(data)
   const columns = [
     {
       field: 'appointment_ID',
@@ -36,7 +37,7 @@ function Appointments() {
       editable: false,
     },
     {
-      field: 'appointment_Time',
+      field: 'appointment_time',
       headerName: 'Time',
       width: 110,
       editable: false,
