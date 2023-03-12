@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './addHP.scss'
-
+import axios from 'axios'
 
 function AddHP() {
     const [username, setUsername] = useState('')
@@ -23,21 +23,16 @@ function AddHP() {
         console.log(phone)
         console.log(role)
 
-
         // send to backend
-        // const { res } = useApi("/api/doctor/add_doctor", "POST", {
-        //     username: username,
-        //     password: password,
-        //     first_name: firstName,
-        //     last_name: lastName,
-        //     email: email,
-        //     phone_number: phone,
-        //     role: role   
-        // })
-
-        // if (res) {
-        //     console.log(res)
-        // }
+        axios.post('/api/admin/register-professional', {
+            username: username,
+            password: password,
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            phone_number: phone,
+            role: role
+        })
 
         // clear form
         setUsername('')
@@ -47,7 +42,7 @@ function AddHP() {
         setEmail('')
         setPhone('')
         setRole('')
-        
+
     }
 
     return (
