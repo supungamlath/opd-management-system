@@ -73,8 +73,28 @@ const getPatientDetails = async (req, res) => {
 }
 
 
+const setAppointmentStatus = async (req, res) => {
+    const errors = validationResult(req);
+    if (errors.array().length > 0) {
+        res.send(errors.array()[0].msg);
+    } else {
+        try {
+            const appointment = Appointment.findByAppointmentID(req.appointment_ID)
+            if (appointment) {
+                appointment.status = req.status
+            } else {
+                res.status(500).send('Invalid Appointment');
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Error in changing appointment status');
+        }
+    }
+}
+
 module.exports = {
     getAppointments,
     editAppointmentStatus,
-    getPatientDetails
+    getPatientDetails,
+    setAppointmentStatus
 }
