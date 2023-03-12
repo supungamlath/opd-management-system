@@ -12,7 +12,10 @@ const getAppointments = async (req, res) => {
         try {
             const professional = verifyHeader(req);
             if (professional && professional.role === 'Doctor') {
-                const appointments = await Appointment.findByProfessional_ID(professional.professional_ID)
+                const appointments = await Appointment.findAllByProfessional_ID(professional.professional_ID);
+                appointments.forEach(function (element) {
+                    element.id = element.appointment_ID;
+                });
                 res.status(200).json({
                     message: 'Appointments retrieved succesfully',
                     data: { 'rows': appointments }

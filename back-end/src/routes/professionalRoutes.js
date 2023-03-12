@@ -13,4 +13,14 @@ router.post('/api/professional/get-patient-details',
     professionalController.getPatientDetails
 );
 
+router.post('/api/professional/get-patient-appointments',
+    body('patient_ID').not().isEmpty().escape(),
+    professionalController.getPatientAppointments
+);
+
+router.post('/api/professional/get-patient-records',
+    body('patient_ID').not().isEmpty().escape(),
+    professionalController.getPatientRecords
+);
+
 module.exports = router;

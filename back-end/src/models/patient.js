@@ -41,7 +41,7 @@ class Patient {
 
     static async getAllPatients() {
         const [rows] = await db.connection.query('SELECT * FROM patient');
-        return rows;
+        return Object.values(JSON.parse(JSON.stringify(rows)));
     }
 }
 
