@@ -132,7 +132,6 @@ function Appointments() {
           }}
           pageSizeOptions={[5]}
         // checkboxSelection
-
         />
       </Box>
 
