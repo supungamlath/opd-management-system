@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator');
 
 const { verifyHeader } = require('../services/jwt')
 const { Appointment } = require('../models/appointment');
+const { Record } = require('../models/patient_record');
 
 
 const getAppointments = async (req, res) => {
@@ -47,7 +48,8 @@ const editAppointmentStatus = async (req, res) => {
                 });
             }
         } catch (error) {
-
+            console.log(error);
+            res.status(500).send('Error in retrieving appointments');
         }
     }
 }
@@ -72,6 +74,57 @@ const getPatientDetails = async (req, res) => {
     }
 }
 
+const getPatientAppointments = async (req, res) => {
+    const errors = validationResult(req);
+    if (errors.array().length > 0) {
+        res.send(errors.array()[0].msg);
+    } else {
+        try {
+            const professional = verifyHeader(req);
+            if (professional) {
+                const appointments = await Appointment.findAllByPatientID(req.body.patient_id);
+                appointments.forEach(function (element) {
+                    element.id = element.appointment_ID;
+                });
+                res.status(200).json({
+                    message: 'Appointments retrieved succesfully',
+                    data: { 'rows': appointments }
+                });
+            }
+            else {
+                res.status(500).send('Unauthorized access!');
+            }
+        } catch (error) {
+
+        }
+    }
+}
+
+const getPatientRecords = async (req, res) => {
+    const errors = validationResult(req);
+    if (errors.array().length > 0) {
+        res.send(errors.array()[0].msg);
+    } else {
+        try {
+            const professional = verifyHeader(req);
+            if (professional) {
+                const records = await Record.findAllByProfessionalID;
+                appointments.forEach(function (element) {
+                    element.id = element.appointment_ID;
+                });
+                res.status(200).json({
+                    message: 'Appointments retrieved succesfully',
+                    data: { 'rows': appointments }
+                });
+            }
+            else {
+                res.status(500).send('Unauthorized access!');
+            }
+        } catch (error) {
+
+        }
+    }
+}
 
 const setAppointmentStatus = async (req, res) => {
     const errors = validationResult(req);
@@ -96,5 +149,7 @@ module.exports = {
     getAppointments,
     editAppointmentStatus,
     getPatientDetails,
+    getPatientAppointments,
+    getPatientRecords,
     setAppointmentStatus
 }
