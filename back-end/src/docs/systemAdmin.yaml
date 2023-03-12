@@ -1,0 +1,54 @@
+paths:
+  /api/admin/register-professional:
+    post:
+      summary: Register Professionals
+      description: Register new professionals to the system
+      tags:
+        - System Admin
+      requestBody:
+        description: Created professional object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professional'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+            description: Success
+        '500':
+            description: Error
+
+components:
+  schemas:
+    Professional:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Username
+          example: 'Chathura'
+        password:
+          type: string
+          description: Password
+          example: '$2a$10$CwTycUXWue0Thq9StjUM0uG8BnUfbEgXpwGSWmzmOTa7NZl7gLMK2'
+        first_name:
+          type: string
+          description: First Name
+          example: 'John'
+        last_name:
+          type: string
+          description: Last Name
+          example: 'Doe'
+        email:
+          type: string
+          description: Email
+          example: 'example@mail.com'
+        phone_number:
+          type: string
+          description: Phone Number
+          example: '0766225514'
+        role:
+          type: string
+          description: Professional Role
+          example: 'Doctor'
