@@ -21,7 +21,7 @@ router.post('/api/patient/create-appointment',
     body('appointment_time').not().isEmpty().escape(),
     body('patient_ID').not().isEmpty().escape(),
     body('professional_ID').not().isEmpty().escape(),
-    body('status').not().isEmpty().escape(),
+    body('status').not().isEmpty().isIn(['Pending', 'Accepted', 'Arrived', 'Missed', 'Declined', 'Cancelled', 'Completed']).escape(),
     patientController.createAppointment
 );
 
