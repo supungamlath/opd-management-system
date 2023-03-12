@@ -1,4 +1,4 @@
-import "./sidebar.scss";
+import "./professionalSidebar.scss";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ import MoneyIcon from "@mui/icons-material/Money";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import { AuthContext } from "../../context/Auth-context";
 
-function Sidebar(props) {
+function ProfessionalSidebar(props) {
   // import signout fnc form auth context
   const { signOut } = useContext(AuthContext);
 
@@ -27,20 +27,20 @@ function Sidebar(props) {
 
       <div className="center">
         <ul>
-          <Link to={"/"}> 
+          <Link to={"/"}>
             <li>
               <DashboardIcon className="icon" />
-              {!isSidebarActive && <p>Appointments</p>}
+              {!isSidebarActive && <p>All Appointments</p>}
             </li>
           </Link>
 
-          <Link to={"/patientdashboard/reports"}>
+          <Link to={"/profdashboard/today"}>
             <li>
-              <MoneyIcon className="icon" />
-              {!isSidebarActive && <p>Reports</p>}
+              <DashboardIcon className="icon" />
+              {!isSidebarActive && <p>Today's Appointments</p>}
             </li>
           </Link>
-          
+
 
           <li onClick={signOut}>
             <ExitToAppOutlinedIcon className="icon" />
@@ -52,4 +52,4 @@ function Sidebar(props) {
   );
 }
 
-export default Sidebar;
+export default ProfessionalSidebar;
