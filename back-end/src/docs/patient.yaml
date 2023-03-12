@@ -63,7 +63,7 @@ components:
         password:
           type: string
           description: Password
-          example: '123456'
+          example: '$2a$10$CwTycUXWue0Thq9StjUM0uG8BnUfbEgXpwGSWmzmOTa7NZl7gLMK2'
         first_name:
           type: string
           description: First Name

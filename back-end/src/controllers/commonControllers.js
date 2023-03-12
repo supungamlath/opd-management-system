@@ -56,6 +56,20 @@ const signInUser = async (req, res) => {
     }
 }
 
+const getName = async (req, res) => {
+    const user = await verifyHeader(req);
+    if (user) {
+
+        res.status(200).json({
+            name: user.first_name + " " + user.last_name
+        });
+    }
+    else {
+        res.status(500).send('Error retrieving name!');
+    }
+}
+
 module.exports = {
-    signInUser
+    signInUser,
+    getName
 }

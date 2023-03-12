@@ -11,15 +11,15 @@ const getAppointments = async (req, res) => {
     } else {
         try {
             const professional = verifyHeader(req);
-            console.log(professional);
-            if (professional) {
-                // TODO - Implement this
-                // const appointments = Appointment.findByProfessional_ID(professional.professional_ID)
+            if (professional && professional.role === 'Doctor') {
+                const appointments = await Appointment.findByProfessional_ID(professional.professional_ID)
                 res.status(200).json({
                     message: 'Appointments retrieved succesfully',
-                    // data: { 'rows': appointments }
-                    data: { 'rows': {} }
+                    data: { 'rows': appointments }
                 });
+            }
+            else {
+                res.status(500).send('Unauthorized access!');
             }
         } catch (error) {
             console.log(error);

@@ -9,4 +9,8 @@ router.post('/api/common/login',
     commonController.signInUser
 );
 
+router.get('/api/common/get-name',
+    commonController.getName
+);
+
 module.exports = router;

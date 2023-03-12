@@ -25,3 +25,17 @@ paths:
             description: Success
           '500':
             description: Error
+
+  /api/common/get-name:
+      get:
+        summary: Get name
+        description: Get name of user
+        tags:
+          - Common
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: Success
+          '500':
+            description: Error
