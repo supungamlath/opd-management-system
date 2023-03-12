@@ -28,11 +28,11 @@ function AddHP() {
         // const { res } = useApi("/api/doctor/add_doctor", "POST", {
         //     username: username,
         //     password: password,
-        //     firstName: firstName,
-        //     lastName: lastName,
+        //     first_name: firstName,
+        //     last_name: lastName,
         //     email: email,
-        //     phone: phone,
-        //     role: role
+        //     phone_number: phone,
+        //     role: role   
         // })
     }
 
