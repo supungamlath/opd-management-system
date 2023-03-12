@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator');
 const { verifyHeader } = require('../services/jwt')
 const { Appointment } = require('../models/appointment');
 const { Record } = require('../models/patient_record');
+const { Patient } = require('../models/patient')
 
 
 const getAppointments = async (req, res) => {
@@ -60,14 +61,19 @@ const getPatientDetails = async (req, res) => {
         try {
             const professional = verifyHeader(req);
             if (professional) {
-                // TODO - Implement this
-                res.status(200).json({
-                    message: 'Appointments retrieved succesfully',
-                    data: { 'rows': appointments }
-                });
+                const patient = Patient.findByPatientID(req.patient_ID)
+                if (patient) {
+                    res.status(200).json({
+                        message: 'Patient retrieved succesfully',
+                        data: patient
+                    });
+                } else {
+                    res.status(500).send('Invalid Patient');
+                }
             }
         } catch (error) {
-
+            console.log(error);
+            res.status(500).send('Error in retrieving Patient details');
         }
     }
 }
@@ -93,7 +99,8 @@ const getPatientAppointments = async (req, res) => {
                 res.status(500).send('Unauthorized access!');
             }
         } catch (error) {
-
+            console.log(error);
+            res.status(500).send('Error in retrieving Patient appointments');
         }
     }
 }
@@ -106,7 +113,7 @@ const getPatientRecords = async (req, res) => {
         try {
             const professional = verifyHeader(req);
             if (professional) {
-                const records = await Record.findAllByProfessional_ID(req.body.professional_ID); 
+                const records = await Record.findAllByProfessional_ID(req.body.professional_ID);
                 res.status(200).json({
                     message: 'Records retrieved succesfully',
                     data: { 'rows': records }
@@ -116,7 +123,8 @@ const getPatientRecords = async (req, res) => {
                 res.status(500).send('Unauthorized access!');
             }
         } catch (error) {
-
+            console.log(error);
+            res.status(500).send('Error in retrieving Patient records');
         }
     }
 }

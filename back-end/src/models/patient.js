@@ -34,6 +34,11 @@ class Patient {
         return rows[0];
     }
 
+    static async findByPatientID(patient_ID) {
+        const [rows] = await db.connection.query('SELECT * FROM patient WHERE patient_ID = ?', [patient_ID]);
+        return rows[0];
+    }
+
     static async findByEmail(email) {
         const [rows] = await db.connection.query('SELECT * FROM patient WHERE email = ?', [email]);
         return rows[0];
