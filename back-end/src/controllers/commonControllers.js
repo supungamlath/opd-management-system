@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-const { signToken } = require('../services/jwt')
+const { signToken, verifyHeader } = require('../services/jwt')
 const { Patient } = require('../models/patient')
 const { Professional } = require('../models/professional');
 const { System_Admin } = require('../models/system_admin');
