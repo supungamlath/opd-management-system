@@ -13,6 +13,31 @@ paths:
         '500':
             description: Error
 
+  /api/professional/get-patient-details:
+    post:
+      summary: Get patient details
+      description: Get patient details for a professional
+      tags:
+        - Professional
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Created patient object
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                patient_ID:
+                  type: string
+                  description: Patient ID
+                  example: '1'
+      responses:
+        '200':
+            description: Success
+        '500':
+            description: Error
+
 components:
   securitySchemes:
     bearerAuth:

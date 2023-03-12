@@ -17,33 +17,6 @@ paths:
         '500':
             description: Error
 
-  /api/patient/login:
-    post:
-      summary: Login patient
-      description: Logs patient into the system
-      tags:
-        - Patient
-      requestBody:
-        description: Created patient object
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                  description: Patientname
-                  example: 'John123'
-                password:
-                  type: string
-                  description: Password
-                  example: '123456'
-      responses:
-        '200':
-          description: Success
-        '500':
-          description: Error
-
   /api/patient/create-appointment:
     post:
       summary: Create appointment
@@ -58,6 +31,20 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Appointment'
+      responses:
+        '200':
+            description: Success
+        '500':
+            description: Error
+
+  /api/patient/get-appointments:
+    get:
+      summary: Get appointments
+      description: Get all appointments for a patient
+      tags:
+        - Patient
+      security:
+        - bearerAuth: []
       responses:
         '200':
             description: Success
