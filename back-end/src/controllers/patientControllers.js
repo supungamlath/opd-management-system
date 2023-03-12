@@ -88,8 +88,11 @@ const getAppointments = async (req, res) => {
         try {
             const patient = verifyHeader(req);
             if (patient) {
-                let appointments = await Appointment.findByPatientID(patient.patient_ID)
-                appointments = { ...appointments, id: appointments.appointment_ID }
+                const appointments = await Appointment.findAllByPatientID(patient.patient_ID);
+                appointments.forEach(function (element) {
+                    element.id = element.appointment_ID;
+                });
+                console.log(appointments);
                 res.status(200).json({
                     message: 'Appointments retrieved succesfully',
                     data: { 'rows': appointments }

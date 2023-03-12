@@ -24,19 +24,19 @@ class Appointment {
         return rows[0];
     }
 
-    static async findByPatientID(patient_ID) {
+    static async findAllByPatientID(patient_ID) {
         const [rows] = await db.connection.query('SELECT * FROM appointment WHERE patient_ID = ?', [patient_ID]);
-        return rows;
+        return Object.values(rows);
     }
 
-    static async findByProfessional_ID(professional_ID) {
+    static async findAllByProfessional_ID(professional_ID) {
         const [rows] = await db.connection.query('SELECT * FROM appointment WHERE professional_ID = ?', [professional_ID]);
-        return rows;
+        return Object.values(rows);
     }
 
-    static async findByStatus(status) {
+    static async findAllByStatus(status) {
         const [rows] = await db.connection.query('SELECT * FROM appointment WHERE status = ?', [status]);
-        return rows;
+        return Object.values(rows);
     }
 
     static async findByDateTime(date, time) {
