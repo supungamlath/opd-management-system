@@ -10,13 +10,14 @@ import Button from '@mui/material/Button';
 
 function Appointments() {
 
-  const { data } = useApi("/api/patient/get-appointments", "GET")
+  const { object } = useApi("/api/patient/get-appointments", "GET")
   // console.log(res)
   // get columns and rows from data
   // const columns = data ? data.columns : []
-  const rows = data ? data.rows : []
-  
-  console.log(data)
+  const rows = object ? object.rows : []
+  console.log(rows)
+  console.log(object)
+
   const columns = [
     {
       field: 'appointment_ID',
@@ -131,7 +132,6 @@ function Appointments() {
           }}
           pageSizeOptions={[5]}
         // checkboxSelection
-
         />
       </Box>
 

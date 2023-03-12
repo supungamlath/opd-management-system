@@ -12,8 +12,8 @@ function Navbar(props) {
 
   const { role } = useContext(AuthContext);
 
-  const {isSidebarActive} = props
-  const { data } = useApi("/api/user", "GET")
+  const { isSidebarActive } = props
+  const { data } = useApi("/api/common/get-name", "GET")
 
   return (
     <div className={isSidebarActive ? "navbar collapse" : "navbar"}>
@@ -26,14 +26,14 @@ function Navbar(props) {
 
         <div className="items">
           <div className="item">
-            <LanguageOutlinedIcon/>
+            <LanguageOutlinedIcon />
             English
           </div>
           <div className="item">
-            <DarkModeOutlinedIcon/>
+            <DarkModeOutlinedIcon />
           </div>
           <div className="item">
-            <FullscreenExitOutlinedIcon/>
+            <FullscreenExitOutlinedIcon />
           </div>
         </div>
 
