@@ -30,9 +30,9 @@ class Record {
         return rows[0];
     }
 
-    static async findByProfessional_ID(professional_id) {
+    static async findAllByProfessional_ID(professional_id) {
         const [rows] = await db.connection.query('SELECT * FROM patient_record WHERE professional_id = ?', [professional_id]);
-        return rows[0];
+        return Object.values(rows);
     }
 }
 

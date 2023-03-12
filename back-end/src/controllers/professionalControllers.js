@@ -107,13 +107,10 @@ const getPatientRecords = async (req, res) => {
         try {
             const professional = verifyHeader(req);
             if (professional) {
-                const records = await Record.findAllByProfessionalID;
-                appointments.forEach(function (element) {
-                    element.id = element.appointment_ID;
-                });
+                const records = await Record.findAllByProfessional_ID(req.body.professional_ID); 
                 res.status(200).json({
-                    message: 'Appointments retrieved succesfully',
-                    data: { 'rows': appointments }
+                    message: 'Records retrieved succesfully',
+                    data: { 'rows': records }
                 });
             }
             else {
