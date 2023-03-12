@@ -39,17 +39,15 @@ const editAppointmentStatus = async (req, res) => {
         res.send(errors.array()[0].msg);
     } else {
         try {
-            const professional = verifyHeader(req);
-            if (professional) {
-                // TODO - Implement this
-                res.status(200).json({
-                    message: 'Appointments retrieved succesfully',
-                    data: { 'rows': appointments }
-                });
+            const appointment = Appointment.findByAppointmentID(req.appointment_ID)
+            if (appointment) {
+                appointment.status = req.status
+            } else {
+                res.status(500).send('Invalid Appointment');
             }
         } catch (error) {
             console.log(error);
-            res.status(500).send('Error in retrieving appointments');
+            res.status(500).send('Error in changing appointment status');
         }
     }
 }
@@ -123,30 +121,10 @@ const getPatientRecords = async (req, res) => {
     }
 }
 
-const setAppointmentStatus = async (req, res) => {
-    const errors = validationResult(req);
-    if (errors.array().length > 0) {
-        res.send(errors.array()[0].msg);
-    } else {
-        try {
-            const appointment = Appointment.findByAppointmentID(req.appointment_ID)
-            if (appointment) {
-                appointment.status = req.status
-            } else {
-                res.status(500).send('Invalid Appointment');
-            }
-        } catch (error) {
-            console.log(error);
-            res.status(500).send('Error in changing appointment status');
-        }
-    }
-}
-
 module.exports = {
     getAppointments,
     editAppointmentStatus,
     getPatientDetails,
     getPatientAppointments,
     getPatientRecords,
-    setAppointmentStatus
 }

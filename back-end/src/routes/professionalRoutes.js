@@ -23,10 +23,10 @@ router.post('/api/professional/get-patient-records',
     professionalController.getPatientRecords
 );
 
-router.post('/api/professional/set-appointment-status',
+router.post('/api/professional/edit-appointment-status',
     body('appointment_ID').not().isEmpty().escape(),
     body('status').not().isEmpty().isIn(['Pending', 'Accepted', 'Arrived', 'Missed', 'Declined', 'Cancelled', 'Completed']).escape(),
-    professionalController.setAppointmentStatus
+    professionalController.editAppointmentStatus
 );
 
 module.exports = router;
