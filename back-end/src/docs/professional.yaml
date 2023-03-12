@@ -1,18 +1,12 @@
 paths:
-  /api/appointment/create:
-    post:
-      summary: Create appointment
-      description: Create an appointment for a patient
+  /api/professional/get-appointments:
+    get:
+      summary: Get appointments
+      description: Get all appointments for a professional
       tags:
-        - Appointment
+        - Professional
       security:
         - bearerAuth: []
-      requestBody:
-        description: Created appointment object
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Appointment'
       responses:
         '200':
             description: Success

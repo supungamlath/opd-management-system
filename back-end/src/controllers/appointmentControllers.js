@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-const { verifyToken } = require('../services/jwt')
+const { verifyHeader } = require('../services/jwt')
 const { Appointment } = require('../models/appointment');
 
 const createAppointment = async (req, res) => {
@@ -9,9 +9,7 @@ const createAppointment = async (req, res) => {
         res.send(errors.array()[0].msg);
     } else {
         try {
-            const token = req.headers.authorization.replace('Bearer ', '')
-            const patient = verifyToken(token);
-
+            const patient = verifyHeader(req);
             if (patient) {
                 const appointment = Appointment.createFromRequest(req)
                 await appointment.save()
@@ -33,9 +31,7 @@ const getAppointments = async (req, res) => {
         res.send(errors.array()[0].msg);
     } else {
         try {
-            const token = req.headers.authorization.replace('Bearer ', '')
-            const patient = verifyToken(token);
-
+            const patient = verifyHeader(req);
             if (patient) {
                 const appointments = Appointment.findByPatientID(patient.ID)
                 res.status(200).json({
@@ -57,9 +53,7 @@ const editAppointment = async (req, res) => {
         res.send(errors.array()[0].msg);
     } else {
         try {
-            const token = req.headers.authorization.replace('Bearer ', '')
-            const patient = verifyToken(token);
-
+            const patient = verifyHeader(req);
             if (patient) {
                 const appointments = Appointment.findByAppointmentID(req.appointment_ID)
                 res.status(200).json({

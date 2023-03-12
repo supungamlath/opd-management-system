@@ -44,6 +44,26 @@ paths:
         '500':
           description: Error
 
+  /api/patient/create-appointment:
+    post:
+      summary: Create appointment
+      description: Create an appointment for a patient
+      tags:
+        - Patient
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Created appointment object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '200':
+            description: Success
+        '500':
+            description: Error
+
 components:
   schemas:
     Patient:

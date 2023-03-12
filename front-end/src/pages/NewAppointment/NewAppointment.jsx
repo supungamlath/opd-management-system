@@ -31,9 +31,18 @@ function NewAppointment() {
                             <option value="3">Dr. Ali</option>
                         </select>
                     </div>
+
                     <div className='in-line'>
-                        <label htmlFor='date'>Date</label>
-                        <input value={date} onChange={(e) => setDate(e.target.value)} type='date' placeholder='dd/mm/yyyy' id="date" name="date" />
+                    <label htmlFor='date'>Date</label>
+                    <input 
+                        type='date' 
+                        id='date' 
+                        name='date' 
+                        value={date} 
+                        onChange={(e) => setDate(e.target.value)}
+                        min={new Date().toISOString().split("T")[0]} // set min to today's date
+                        max={new Date(new Date().getTime() + 20 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]} // set max to 20 days from today
+                    />
                     </div>
                     <div className='in-line'>
                         <label htmlFor='time'>Time</label>

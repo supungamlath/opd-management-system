@@ -1,13 +1,12 @@
 const express = require('express');
-const swaggerUI = require('swagger-ui-express')
+const swaggerUI = require('swagger-ui-express');
 
 const app = express();
 
-const testRoutes = require('./src/routes/testRoutes');
-const patientRoutes = require('./src/routes/patientRoutes');
 const commonRoutes = require('./src/routes/commonRoutes')
-const appointmentRoutes = require('./src/routes/appointmentRoutes')
-const { swaggerSpecs } = require('./src/services/swagger')
+const patientRoutes = require('./src/routes/patientRoutes');
+const professionalRoutes = require('./src/routes/professionalRoutes');
+const { swaggerSpecs } = require('./src/services/swagger');
 
 // Use the middleware to parse the request body
 app.use(express.json());
@@ -19,12 +18,11 @@ app.use(function (req, res, next) {
 });
 
 ///////////////////// Routes /////////////////////
-app.use(testRoutes);
 app.use(patientRoutes);
-app.use(commonRoutes)
-app.use(appointmentRoutes)
+app.use(commonRoutes);
+app.use(professionalRoutes);
 
-app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpecs))
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpecs));
 
 const PORT = process.env.NODE_PORT || 8080;
 app.listen(PORT, () => {
