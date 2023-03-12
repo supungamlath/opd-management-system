@@ -34,6 +34,20 @@ function AddHP() {
         //     phone_number: phone,
         //     role: role   
         // })
+
+        // if (res) {
+        //     console.log(res)
+        // }
+
+        // clear form
+        setUsername('')
+        setPassword('')
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setPhone('')
+        setRole('')
+        
     }
 
     return (
