@@ -37,5 +37,5 @@ class Record {
 }
 
 module.exports = {
-    Patient
+    Record
 }
