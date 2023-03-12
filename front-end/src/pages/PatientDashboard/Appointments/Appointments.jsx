@@ -10,28 +10,33 @@ import Button from '@mui/material/Button';
 
 function Appointments() {
 
-  const { res } = useApi("/api/appointment/get_appointments", "GET")
-  console.log(res)
+  // const { res } = useApi("/api/appointment/get-appointments", "GET")
+  // console.log(res)
   // get columns and rows from data
   // const columns = data ? data.columns : []
-  const rows = res ? res.data.rows : []
+  // const rows = res ? res.data.rows : []
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
     {
-      field: 'docName',
-      headerName: 'Doctor Name',
+      field: 'appointment_ID',
+      headerName: 'ID',
+      width: 90,
+      editable: false,
+    },
+    {
+      field: 'professional_ID',
+      headerName: 'Doctor ID',
       width: 150,
       editable: false,
     },
     {
-      field: 'date',
+      field: 'appointment_date',
       headerName: 'Date',
       width: 150,
       editable: false,
     },
     {
-      field: 'time',
+      field: 'appointment_Time',
       headerName: 'Time',
       width: 110,
       editable: false,
@@ -39,7 +44,6 @@ function Appointments() {
     {
       field: 'status',
       headerName: 'Status',
-      type: 'text',
       width: 110,
       editable: false,
     },
@@ -56,11 +60,12 @@ function Appointments() {
     renderCell: (params) => usersActions(params)
   },]
 
-  // const rows = [
-  //   { id: 1, docName: 'Kamal', date: '11/12/2023', time: "10:30 AM", status: "Pending" },
-  //   { id: 2, docName: 'Kamal', date: '11/12/2023', time: "11:30 AM", status: "Pending" },
-  //   { id: 3, docName: 'Kamal', date: '11/12/2023', time: "12:30 AM", status: "Pending" },
-  // ];
+  const rows = [
+    { id: 1, appointment_ID: 1, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '10:30 AM', status: "Pending" },
+    { id: 2, appointment_ID: 2, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '11:30 AM', status: "Pending" },
+    { id: 3, appointment_ID: 3, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '12:30 AM', status: "Pending" },
+
+  ];
 
   const usersActions = (params) => (
     <div className='actions'>
@@ -81,7 +86,7 @@ function Appointments() {
           "This appointment will be cancelled",
           'Cancel appointment',
           'go back',
-          () => apiCrud(`/api/manager/approveLoan`, 'POST', 'Loan approved', {
+          () => apiCrud(`/api`, 'POST', 'Loan approved', {
             loanID: params.row.id,
           })()
         )}>
