@@ -10,11 +10,11 @@ import Button from '@mui/material/Button';
 
 function Appointments() {
 
-  // const { res } = useApi("/api/appointment/get-appointments", "GET")
+  const { res } = useApi("/api/patient/get-appointments", "GET")
   // console.log(res)
   // get columns and rows from data
   // const columns = data ? data.columns : []
-  // const rows = res ? res.data.rows : []
+  const rows = res ? res.data.rows : []
 
   const columns = [
     {
@@ -60,12 +60,12 @@ function Appointments() {
     renderCell: (params) => usersActions(params)
   },]
 
-  const rows = [
-    { id: 1, appointment_ID: 1, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '10:30 AM', status: "Pending" },
-    { id: 2, appointment_ID: 2, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '11:30 AM', status: "Pending" },
-    { id: 3, appointment_ID: 3, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '12:30 AM', status: "Pending" },
+  // const rows = [
+  //   { id: 1, appointment_ID: 1, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '10:30 AM', status: "Pending" },
+  //   { id: 2, appointment_ID: 2, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '11:30 AM', status: "Pending" },
+  //   { id: 3, appointment_ID: 3, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '12:30 AM', status: "Pending" },
 
-  ];
+  // ];
 
   const usersActions = (params) => (
     <div className='actions'>
