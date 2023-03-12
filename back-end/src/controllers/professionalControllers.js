@@ -3,27 +3,6 @@ const { validationResult } = require('express-validator');
 const { verifyHeader } = require('../services/jwt')
 const { Appointment } = require('../models/appointment');
 
-const createAppointment = async (req, res) => {
-    const errors = validationResult(req);
-    if (errors.array().length > 0) {
-        res.send(errors.array()[0].msg);
-    } else {
-        try {
-            const patient = verifyHeader(req);
-            if (patient) {
-                const appointment = Appointment.createFromRequest(req)
-                await appointment.save()
-                res.status(200).json({
-                    message: 'Appointment created succesfully',
-                });
-            }
-
-        } catch (error) {
-            console.log(error);
-            res.status(500).send('Cannot create appointment');
-        }
-    }
-}
 
 const getAppointments = async (req, res) => {
     const errors = validationResult(req);
@@ -31,12 +10,15 @@ const getAppointments = async (req, res) => {
         res.send(errors.array()[0].msg);
     } else {
         try {
-            const patient = verifyHeader(req);
-            if (patient) {
-                const appointments = Appointment.findByPatientID(patient.ID)
+            const professional = verifyHeader(req);
+            console.log(professional);
+            if (professional) {
+                // TODO - Implement this
+                // const appointments = Appointment.findByProfessional_ID(professional.professional_ID)
                 res.status(200).json({
                     message: 'Appointments retrieved succesfully',
-                    data: { 'rows': appointments }
+                    // data: { 'rows': appointments }
+                    data: { 'rows': {} }
                 });
             }
         } catch (error) {
@@ -47,15 +29,15 @@ const getAppointments = async (req, res) => {
     }
 }
 
-const editAppointment = async (req, res) => {
+const editAppointmentStatus = async (req, res) => {
     const errors = validationResult(req);
     if (errors.array().length > 0) {
         res.send(errors.array()[0].msg);
     } else {
         try {
-            const patient = verifyHeader(req);
-            if (patient) {
-                const appointments = Appointment.findByAppointmentID(req.appointment_ID)
+            const professional = verifyHeader(req);
+            if (professional) {
+                // TODO - Implement this
                 res.status(200).json({
                     message: 'Appointments retrieved succesfully',
                     data: { 'rows': appointments }
@@ -67,8 +49,29 @@ const editAppointment = async (req, res) => {
     }
 }
 
+const getPatientDetails = async (req, res) => {
+    const errors = validationResult(req);
+    if (errors.array().length > 0) {
+        res.send(errors.array()[0].msg);
+    } else {
+        try {
+            const professional = verifyHeader(req);
+            if (professional) {
+                // TODO - Implement this
+                res.status(200).json({
+                    message: 'Appointments retrieved succesfully',
+                    data: { 'rows': appointments }
+                });
+            }
+        } catch (error) {
+
+        }
+    }
+}
+
+
 module.exports = {
-    createAppointment,
     getAppointments,
-    editAppointment
+    editAppointmentStatus,
+    getPatientDetails
 }

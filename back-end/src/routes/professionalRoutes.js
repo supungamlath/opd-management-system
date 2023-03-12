@@ -1,15 +1,16 @@
 const express = require('express');
-const appointmentController = require('../controllers/appointmentControllers');
+const professionalController = require('../controllers/professionalControllers');
 const { body } = require('express-validator');
 const router = new express.Router();
 
 
 router.get('/api/professional/get-appointments',
-    appointmentController.getAppointments
+    professionalController.getAppointments
 );
 
-router.post('/api/professional/get-patient-id',
-    body('appointment_ID').not().isEmpty().escape(),
+router.post('/api/professional/get-patient-details',
+    body('patient_ID').not().isEmpty().escape(),
+    professionalController.getPatientDetails
 );
 
 module.exports = router;
