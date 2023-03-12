@@ -18,7 +18,7 @@ function Appointments() {
 
   const columns = [
     {
-      field: 'id',
+      field: 'appointment_ID',
       headerName: 'ID',
       width: 90,
       editable: false,
