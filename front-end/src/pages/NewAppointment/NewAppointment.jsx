@@ -17,6 +17,12 @@ function NewAppointment() {
         console.log(doctor)
         console.log(date)
         console.log(time)
+
+        // clear form
+        setDate('')
+        setTime('')
+        setDoctor('')
+
     }
     return (
         <div className='all'>
@@ -33,16 +39,16 @@ function NewAppointment() {
                     </div>
 
                     <div className='in-line'>
-                    <label htmlFor='date'>Date</label>
-                    <input 
-                        type='date' 
-                        id='date' 
-                        name='date' 
-                        value={date} 
-                        onChange={(e) => setDate(e.target.value)}
-                        min={new Date().toISOString().split("T")[0]} // set min to today's date
-                        max={new Date(new Date().getTime() + 20 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]} // set max to 20 days from today
-                    />
+                        <label htmlFor='date'>Date</label>
+                        <input
+                            type='date'
+                            id='date'
+                            name='date'
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                            min={new Date().toISOString().split("T")[0]} // set min to today's date
+                            max={new Date(new Date().getTime() + 20 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]} // set max to 20 days from today
+                        />
                     </div>
                     <div className='in-line'>
                         <label htmlFor='time'>Time</label>

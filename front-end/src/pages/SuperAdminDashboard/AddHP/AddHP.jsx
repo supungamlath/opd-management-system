@@ -80,6 +80,7 @@ function AddHP() {
                         <option value="1">Doctor</option>
                         <option value="2">Nurse</option>
                         <option value="3">Pharmacist</option>
+                        <option value="4">Radiologist</option>
                     </select>
                 </div>
                 <button type="submit" style={{ borderRadius: '0.5rem', backgroundColor: '#3b8dff', color: 'white', minWidth: 300, minHeight: 60 }}>Add new professional</button>

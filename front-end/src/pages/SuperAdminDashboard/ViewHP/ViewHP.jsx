@@ -52,7 +52,7 @@ function ViewHP() {
         <div>
             <h1 className="heading">All Professionals</h1>
             <hr />
-            <Box sx={{ height: 400, width: '100%', padding:2 }}>
+            <Box sx={{ height: 400, width: '100%', padding: 2 }}>
                 <DataGrid
                     rows={rows}
                     columns={columns}
