@@ -55,7 +55,27 @@ const getSummary = async (req, res) => {
     }
 }
 
+const getProfessionals = async (req, res) => {
+    try {
+        const user = verifyHeader(req);
+        console.log(user);
+        if (user.admin_ID) {
+            const professionals = await Professional.getAllHP()
+
+            res.status(200).json({
+                professionals: professionals,
+                message: "Summary loaded successfully"
+            });
+        } else {
+            res.status(500).send('Error getting professionals details');
+        }
+    } catch (error) {
+        res.status(500).send('Error getting professionals details');
+    }
+}
+
 module.exports = {
     registerProfessional,
-    getSummary
+    getSummary,
+    getProfessionals
 }

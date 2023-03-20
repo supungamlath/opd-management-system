@@ -18,4 +18,8 @@ router.get('/api/admin/get-summary',
     systemAdminController.getSummary
 );
 
+router.get('/api/admin/get-professionals',
+    systemAdminController.getProfessionals
+);
+
 module.exports = router;
