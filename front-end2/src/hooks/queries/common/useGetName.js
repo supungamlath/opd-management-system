@@ -8,6 +8,9 @@ const useGetName = async () => {
   const { data } = await axios({
     url: '/api/common/get-name',
     method: 'GET',
+    headers: {
+      "Authorization": `Bearer ${localStorage.jwt}`
+    },
   });
   console.log(data);
   return data;
