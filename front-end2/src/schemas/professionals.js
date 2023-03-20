@@ -1,6 +1,6 @@
 export const professionalsColumns = [
   {
-    field: 'professional_ID', headerName: 'Professional ID', minWidth: 50, flex: 0.5
+    field: 'id', headerName: 'Professional ID', minWidth: 50, flex: 1
   },
   {
     field: 'username', headerName: 'Username', minWidth: 100, flex: 1
@@ -12,7 +12,7 @@ export const professionalsColumns = [
     field: 'last_name', headerName: 'Last Name', minWidth: 70, flex: 1
   },
   {
-    field: 'email', headerName: 'Email', minWidth: 70, flex: 1
+    field: 'email', headerName: 'Email', minWidth: 70, flex: 1.5
   },
   {
     field: 'phone_number', headerName: 'Phone Number', minWidth: 70, flex: 1

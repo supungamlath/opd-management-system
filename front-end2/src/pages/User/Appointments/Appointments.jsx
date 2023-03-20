@@ -103,7 +103,7 @@ function Appointments() {
       <div className="title">
         <h2>Appointments</h2>
         <div className="loan-actions">
-          <Link to={"/patientdashboard/newappointment"}>
+          <Link to={"/patient/newappointment"}>
             <button>
               + New Appointment
             </button>

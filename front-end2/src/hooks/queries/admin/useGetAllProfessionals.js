@@ -6,14 +6,14 @@ const useGetAllProfessionals = async () => {
   // fetch all professionals
 
   const { data } = await axios({
-    url: '/api/admin/list-professionals',
+    url: '/api/admin/get-professionals',
     method: 'GET',
     headers: {
       "Authorization": `Bearer ${localStorage.jwt}`
     },
   });
   console.log(data);
-  return data;
+  return data?.professionals;
 };
 
 export default function useApi() {
