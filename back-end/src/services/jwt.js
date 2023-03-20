@@ -12,9 +12,13 @@ const verifyToken = (token) => jwt.verify(token, secret, (err, res) => {
 })
 
 const verifyHeader = (req) => {
-    const token = req.headers.authorization.replace('Bearer ', '')
-    const decoded = verifyToken(token);
-    return decoded
+    try {
+        const token = req.headers.authorization.replace('Bearer ', '')
+        const decoded = verifyToken(token);
+        return decoded
+    } catch (error) {
+        return null
+    }
 }
 
 module.exports = {
