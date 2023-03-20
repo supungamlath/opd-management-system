@@ -8,7 +8,6 @@ import useGetAllProfessionals from '../../../hooks/queries/admin/useGetAllProfes
 function ViewHP() {
 
     const { data: professionals } = useGetAllProfessionals();
-
     return (
         <div className="accounts">
 
@@ -23,8 +22,8 @@ function ViewHP() {
                             <DataGrid
                                 autoHeight
                                 className='table'
-                                rows={professionalsColumns(professionals)}
-                                columns={professionalsRows}
+                                rows={professionalsRows(professionals)}
+                                columns={professionalsColumns}
                                 pageSize={10}
                                 rowsPerPageOptions={[10]}
                                 disableSelectionOnClick
