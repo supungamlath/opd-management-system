@@ -32,6 +32,14 @@ const registerProfessional = async (req, res) => {
     }
 }
 
+const getSummary = async (req, res) => {
+
+}
+
+const getProfessionals = async (req, res) => {
+
+}
+
 module.exports = {
     registerProfessional
 }
