@@ -8,133 +8,60 @@ import popAction from "../../../helpers/popAction";
 import apiCrud from "../../../api/apiCrud";
 import Button from '@mui/material/Button';
 
+import { appointmentsColumns, appointmentsRows } from "../../../schemas/patient/appointments";
+
+import useGetPatientAppointments from "../../../hooks/queries/patient/useGetPatientAppointments";
+
 function Appointments() {
 
-  const { object } = useApi("/api/patient/get-appointments", "GET")
-  // console.log(res)
-  // get columns and rows from data
-  // const columns = data ? data.columns : []
-  const rows = object ? object.rows : []
-  console.log(rows)
-  console.log(object)
-
-  const columns = [
-    {
-      field: 'appointment_ID',
-      headerName: 'ID',
-      width: 90,
-      editable: false,
-    },
-    {
-      field: 'professional_ID',
-      headerName: 'Doctor ID',
-      width: 150,
-      editable: false,
-    },
-    {
-      field: 'appointment_date',
-      headerName: 'Date',
-      width: 150,
-      editable: false,
-    },
-    {
-      field: 'appointment_time',
-      headerName: 'Time',
-      width: 110,
-      editable: false,
-    },
-    {
-      field: 'status',
-      headerName: 'Status',
-      width: 110,
-      editable: false,
-    },
-
-  ];
-
-  const newColumns = [...columns,
-  {
-    field: 'actions',
-    headerName: 'Actions',
-    minWidth: 110,
-    flex: 1,
-    align: 'center',
-    renderCell: (params) => usersActions(params)
-  },]
-
-  // const rows = [
-  //   { id: 1, appointment_ID: 1, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '10:30 AM', status: "Pending" },
-  //   { id: 2, appointment_ID: 2, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '11:30 AM', status: "Pending" },
-  //   { id: 3, appointment_ID: 3, professional_ID: 1, appointment_date: '11/12/2023', appointment_Time: '12:30 AM', status: "Pending" },
-
-  // ];
-
-  const usersActions = (params) => (
-    <div className='actions'>
-      <Button variant="contained" className="activate"
-        onClick={() => popAction(
-          'Are you sure?',
-          "You won't be able to revert this!",
-          'Edit appointment',
-          () => apiCrud(`/api/manager/approveLoan`, 'POST', 'Loan approved', {
-            loanID: params.row.id,
-          })()
-        )}>
-        Edit
-      </Button>
-      <Button variant="contained" className="activate"
-        onClick={() => popAction(
-          'Are you sure?',
-          "This appointment will be cancelled",
-          'Cancel appointment',
-          'go back',
-          () => apiCrud(`/api`, 'POST', 'Loan approved', {
-            loanID: params.row.id,
-          })()
-        )}>
-        Cancel
-      </Button>
-    </div>
-  )
+  const { data: appointments } = useGetPatientAppointments();
 
   return (
-    <div className='overview'>
+    <div className="loans">
 
       <div className="title">
         <h2>Appointments</h2>
         <div className="loan-actions">
-          <Link to={"/patientdashboard/newappointment"}>
+          <Link to={"/userdashboard/onlineloan"}>
             <button>
-              + New Appointment
+              + Get Online Loan
             </button>
           </Link>
         </div>
       </div>
-      <hr />
-      <Box sx={{ height: 400, width: '100%' }}>
-        <DataGrid
-          rows={rows}
-          columns={newColumns}
-          disableSelectionOnClick
-          sx={{
-            '& .MuiDataGrid-cell:hover': {
-              cursor: 'pointer'
-            },
-          }}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
-              },
-            },
-          }}
-          pageSizeOptions={[5]}
-        // checkboxSelection
-        />
-      </Box>
+      <p>
+        Click on online loan to see installment payments
+      </p>
 
+      <div style={{ height: 250, width: '90%' }}>
+        <div style={{ display: 'flex', height: '100%' }}>
+          <div className="table-container">
+            {o_loans &&
+              <DataGrid
+                autoHeight
+                className='table'
+                rows={appointmentsRows(appointments)}
+                columns={appointmentsColumns}
+                onRowClick={params => (
+                  navigate(`/userdashboard/loans/${params.row.id}`, {
+                    state: {
+                      type: "online loan",
+                    }
+                  })
+                )}
+                pageSize={10}
+                rowsPerPageOptions={[10]}
+                disableSelectionOnClick
+                sx={{
+                  '& .MuiDataGrid-cell:hover': {
+                    cursor: 'pointer'
+                  },
+                }}
+              />
+            }
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

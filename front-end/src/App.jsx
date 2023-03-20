@@ -2,10 +2,10 @@ import "./App.scss";
 import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import LoginLanding from "./pages/LoginLanding/LoginLanding";
 import { AuthContext } from "./context/Auth-context";
+import LoginLanding from "./pages/LoginLanding/LoginLanding";
 import SuperAdminDashboard from "./pages/SuperAdminDashboard/SuperAdminDashboard";
-import UserDashboard from "./pages/PatientDashboard/UserDashboard";
+import PatientDashboard from "./pages/PatientDashboard/PatientDashboard";
 import ProfDashboard from "./pages/ProfessionalDashboard/ProfDashboard";
 
 
@@ -32,7 +32,7 @@ function App() {
 
         ) : (
           <Routes>
-            <Route path="/patientdashboard/*" element={<UserDashboard />} />
+            <Route path="/patientdashboard/*" element={<PatientDashboard />} />
             <Route
               path="*"
               element={<Navigate to="/patientdashboard" replace />}

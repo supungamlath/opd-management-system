@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./userdashboard.scss";
+import "./patientdashboard.scss";
 import { Routes, Route } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
@@ -7,10 +7,10 @@ import Sidebar from "../../layout/sidebar/UserSidebar";
 import Navbar from "../../layout/navbar/Navbar";
 import Appointments from "./Appointments/Appointments";
 import Reports from "./Reports/Reports";
-import NewAppointment from "../NewAppointment/NewAppointment";
+import NewAppointment from "./NewAppointment/NewAppointment";
 
 
-function UserDashboard() {
+function PatientDashboard() {
   // control the responsive sidebar
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
@@ -59,4 +59,4 @@ function UserDashboard() {
   );
 }
 
-export default UserDashboard;
+export default PatientDashboard;

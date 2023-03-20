@@ -1,19 +1,19 @@
 import { useQuery } from "react-query";
 import axios from "axios";
 
-const useGetUserOnlineLoans = async () => {
+const useGetPatientAppointments = async () => {
   const { data } = await axios({
-    url: "/api/userOnlineLoans",
+    url: "/api/patient/get-appointments",
     method: "GET",
     headers: {
       "Authorization": `Bearer ${localStorage.jwt}`,
     },
   });
-  return data["Online_loans"];
+  return data.loans;
 };
 
 export default function useApi() {
-  return useQuery(["user_online_loans"], useGetUserOnlineLoans, {
+  return useQuery(["patient_appointments"], useGetPatientAppointments, {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });

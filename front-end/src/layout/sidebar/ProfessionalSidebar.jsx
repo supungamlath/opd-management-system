@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import MoneyIcon from "@mui/icons-material/Money";
-// import TransformOutlinedIcon from "@mui/icons-material/TransformOutlined";
-// import SettingsIcon from "@mui/icons-material/Settings";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import { AuthContext } from "../../context/Auth-context";
 

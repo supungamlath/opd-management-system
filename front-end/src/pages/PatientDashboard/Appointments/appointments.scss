@@ -2,94 +2,31 @@
 @import '../../../scss/utilities/variables';
 @import '../../../scss/utilities/mixins';
 
-.overview {
-  padding: 2em;
-  height: calc(100% - 140px);
-  color: rgb(0, 0, 0);
-
-  h2 {
-    margin-bottom: 0.5em;
-  }
-
-  hr {
-    border: $border;
-  }
-
-  .content-wrapper {
-    display: flex;
-    height: 100%;
-    
-    .left-section-wrapper {
-      flex: 1;
-      border-right: $border;
-      
-      .left-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2em;
-        gap: 1em;
-
-        img {
-          width: min(300px, 80%);
-        }
-
-        .balance {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          white-space: nowrap;
-          padding: 10px;
-        }
-      }
-    }
-    .right-section-wrapper {
-      flex: 3;
-
-      .right-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2em;
-        
-        .chart-holder {
-          background-color: $clr-light;
-          width: 90%;
-          & * {
-            color: $clr-dark;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media(max-width: 600px) {
-  .overview {
-    padding: 0;
-  }
-  .overview .content-wrapper{
-    flex-direction: column;
-  }
-}
-
-.title {
-  width: 100%;
+.loans {
   z-index: 10;
+  color: $clr-dark;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $clr-main;
 
-  .loan-actions {
+  .title {
+    width: 100%;
+    z-index: 10;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 5px;
-    padding: 1em;
-    width: max-content;
+    margin-bottom: 1em;
+
+    .loan-actions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: 1em;
+      width: max-content;
 
       button {
         @include slideSolidBtn;
@@ -98,22 +35,26 @@
         width: fit-content;
         height: fit-content;
       }
+    }
   }
-}
 
-.actions{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  padding: 1em;
-  width: max-content;
+  p {
+    align-self: start;
+    margin-left: 5em;
+  }
 
-  button {
-    @include slideSolidBtn;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    width: fit-content;
-    height: fit-content;
+  .table-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .table {
+      padding: 1em;
+      background: $clr-light;
+      border-radius: 20px !important;
+      border: none !important;
+      overflow: visible;
+    }
   }
 }
