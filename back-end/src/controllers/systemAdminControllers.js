@@ -35,28 +35,23 @@ const registerProfessional = async (req, res) => {
 }
 
 const getSummary = async (req, res) => {
-    const errors = validationResult(req);
-    if (errors.array().length > 0) {
-        res.send(errors.array()[0].msg);
-    } else {
-        try {
-            const user = verifyHeader(req);
-            console.log(user);
-            if (user.systemAdmin_ID) {
-                const professionals = Professional.getAllHP()
-                const patients = Patient.getAllPatients()
+    try {
+        const user = verifyHeader(req);
+        console.log(user);
+        if (user.admin_ID) {
+            const professionals = await Professional.getAllHP()
+            const patients = await Patient.getAllPatients()
 
-                res.status(200).json({
-                    professionals: professionals.length,
-                    patients: patients.length,
-                    message: "Summary loaded successfully"
-                });
-            } else {
-                res.status(500).send('Error getting summary details');
-            }
-        } catch (error) {
+            res.status(200).json({
+                professionals: professionals.length,
+                patients: patients.length,
+                message: "Summary loaded successfully"
+            });
+        } else {
             res.status(500).send('Error getting summary details');
         }
+    } catch (error) {
+        res.status(500).send('Error getting summary details');
     }
 }
 

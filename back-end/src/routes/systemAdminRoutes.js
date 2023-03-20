@@ -14,6 +14,8 @@ router.post('/api/admin/register-professional', // Add correct validation rules
     systemAdminController.registerProfessional
 );
 
-router.get('/api/admin/get-summary');
+router.get('/api/admin/get-summary',
+    systemAdminController.getSummary
+);
 
 module.exports = router;
