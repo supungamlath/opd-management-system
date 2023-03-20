@@ -25,9 +25,6 @@ function Charts(props) {
         style: {
           // colors: '#ffffff',
         },
-        formatter: function (value) {
-          return currency(value);
-        }
       },
     },
     plotOptions: {
@@ -49,12 +46,12 @@ function Charts(props) {
   }
   const series = [
     {
-      name: "Inflow",
+      name: "New",
       data: props.chartData.monthlyInflow,
       color: '#254138',
     },
     {
-      name: "Outflow",
+      name: "Cancelled",
       data: props.chartData.monthlyOutflow,
       color: '#ff9d22',
     },

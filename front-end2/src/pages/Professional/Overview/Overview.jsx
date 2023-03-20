@@ -1,31 +1,15 @@
 import "./overview.scss"
 import React from 'react'
 import AppointmentsChart from '../../../components/appointments-chart/Chart'
-import useGetUserSavingsAccounts from "../../../hooks/queries/users/useGetUserSavingsAccounts";
-import useGetUserCurrentAccounts from "../../../hooks/queries/users/useGetUserCurrentAccounts";
-import useGetUserLoans from "../../../hooks/queries/users/useGetUserLoans";
-import useGetUserOnlineLoans from "../../../hooks/queries/users/useGetUserOnlineLoans";
-import useGetUserTransactions from "../../../hooks/queries/users/useGetUserTransactions";
-import { currency } from "../../../helpers/formatters";
+import useGetAppointments from "../../../hooks/queries/professional/useGetAppointments";
 
 function Overview() {
 
-  const { data: s_accounts } = useGetUserSavingsAccounts();
-  const { data: c_accounts } = useGetUserCurrentAccounts();
-  const accounts = (c_accounts && s_accounts) && s_accounts.concat(c_accounts);
-
-  const { data: p_loans } = useGetUserLoans();
-  const { data: o_loans } = useGetUserOnlineLoans();
-  const loans = (p_loans && o_loans) && p_loans.concat(o_loans);
-
-  const { data: transactions } = useGetUserTransactions();
-
-  const totalBalance = accounts && accounts.map(account => account.balance).reduce((x, y) => +x + +y, 0);
-  const totalLiabs = loans && loans.map(loan => loan.amount).reduce((x, y) => +x + +y, 0);
-
+  const { data: appointments } = useGetAppointments();
+  console.log(appointments);
   const getMonthlySums = (items) => {
-    const monthlyInflow = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    const monthlyOutflow = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const monthlyInflow = [0, 0, 0, 3, 0, 1, 3];
+    const monthlyOutflow = [0, 0, 0, 1, 0, 0, 0];
 
     if (!items) return { monthlyInflow, monthlyOutflow };
 
@@ -55,18 +39,8 @@ function Overview() {
           <div className="left-section">
 
             <div className="balance">
-              <p>Number of Patients</p>
-              <h3>{totalBalance && currency(totalBalance)}</h3>
-            </div>
-
-            <div className="balance">
-              <p>Number of Professionals</p>
-              <h3>{totalLiabs && currency(totalLiabs)}</h3>
-            </div>
-
-            <div className="balance">
               <p>Number of Appointments</p>
-              <h3>{totalLiabs && currency(totalLiabs)}</h3>
+              <h3>{appointments?.data?.rows?.length}</h3>
             </div>
 
           </div>
@@ -77,7 +51,7 @@ function Overview() {
           <div className="right-section">
             <h4>Appointments Summary</h4>
             <div className="chart-holder">
-              <AppointmentsChart chartData={transactions ? getMonthlySums(transactions) : {}} />
+              <AppointmentsChart chartData={appointments ? getMonthlySums(null) : {}} />
 
             </div>
           </div>

@@ -27,20 +27,20 @@ function Sidebar(props) {
 
       <div className="center">
         <ul>
-          <Link to={"/"}> 
+          <Link to={"/patient"}>
             <li>
               <DashboardIcon className="icon" />
               {!isSidebarActive && <p>Appointments</p>}
             </li>
           </Link>
 
-          <Link to={"/patientdashboard/reports"}>
+          <Link to={"/patient/reports"}>
             <li>
               <MoneyIcon className="icon" />
               {!isSidebarActive && <p>Reports</p>}
             </li>
           </Link>
-          
+
 
           <li onClick={signOut}>
             <ExitToAppOutlinedIcon className="icon" />

@@ -24,14 +24,14 @@ function ProfessionalSidebar(props) {
 
       <div className="center">
         <ul>
-          <Link to={"/"}>
+          <Link to={"/professional/"}>
             <li>
               <DashboardIcon className="icon" />
-              {!isSidebarActive && <p>All Appointments</p>}
+              {!isSidebarActive && <p>Overview</p>}
             </li>
           </Link>
 
-          <Link to={"/profdashboard/today"}>
+          <Link to={"/professional/today"}>
             <li>
               <DashboardIcon className="icon" />
               {!isSidebarActive && <p>Today's Appointments</p>}
