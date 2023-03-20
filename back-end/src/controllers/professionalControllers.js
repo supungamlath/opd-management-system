@@ -3,7 +3,8 @@ const { validationResult } = require('express-validator');
 const { verifyHeader } = require('../services/jwt')
 const { Appointment } = require('../models/appointment');
 const { Record } = require('../models/patient_record');
-const { Patient } = require('../models/patient')
+const { Patient } = require('../models/patient');
+const { Professional } = require('../models/professional');
 
 
 const getAppointments = async (req, res) => {
@@ -53,14 +54,37 @@ const editAppointmentStatus = async (req, res) => {
     }
 }
 
+const editProfessional = async (req, res) => {
+    const errors = validationResult(req);
+    if (errors.array().length > 0) {
+        res.send(errors.array()[0].msg);
+    } else {
+        try {
+            const user = verifyHeader(req);
+            if (user.professional_ID) {
+                Professional.update(req, user.professional_ID)
+                res.status(200).json({
+                    message: 'Professional details edited successfully'
+                });
+            } else {
+                throw Error("Cannot edit details")
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Cannot edit details');
+        }
+    }
+
+}
+
 const getPatientDetails = async (req, res) => {
     const errors = validationResult(req);
     if (errors.array().length > 0) {
         res.send(errors.array()[0].msg);
     } else {
         try {
-            const professional = verifyHeader(req);
-            if (professional) {
+            const user = verifyHeader(req);
+            if (user.professional_ID) {
                 const patient = Patient.findByPatientID(req.patient_ID)
                 if (patient) {
                     res.status(200).json({
@@ -84,8 +108,8 @@ const getPatientAppointments = async (req, res) => {
         res.send(errors.array()[0].msg);
     } else {
         try {
-            const professional = verifyHeader(req);
-            if (professional) {
+            const user = verifyHeader(req);
+            if (user.professional_ID) {
                 const appointments = await Appointment.findAllByPatientID(req.body.patient_id);
                 appointments.forEach(function (element) {
                     element.id = element.appointment_ID;
@@ -111,8 +135,8 @@ const getPatientRecords = async (req, res) => {
         res.send(errors.array()[0].msg);
     } else {
         try {
-            const professional = verifyHeader(req);
-            if (professional) {
+            const user = verifyHeader(req);
+            if (user.professional_ID) {
                 const records = await Record.findAllByProfessional_ID(req.body.professional_ID);
                 res.status(200).json({
                     message: 'Records retrieved succesfully',
@@ -135,4 +159,5 @@ module.exports = {
     getPatientDetails,
     getPatientAppointments,
     getPatientRecords,
+    editProfessional
 }

@@ -29,4 +29,14 @@ router.post('/api/professional/edit-appointment-status',
     professionalController.editAppointmentStatus
 );
 
+
+router.post('/api/professional/edit',
+    body('first_name').not().isEmpty().escape(),
+    body('last_name').not().isEmpty().escape(),
+    body('email').isEmail().normalizeEmail(),
+    body('phone_number').not().isEmpty().escape(),
+    professionalController.editProfessional
+);
+
+
 module.exports = router;

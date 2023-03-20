@@ -1,4 +1,24 @@
 paths:
+  /api/patient/edit:
+    post:
+      summary: Edit patient
+      description: Edit a new patient
+      tags:
+        - Patient
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Edited patient object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/editPatient'
+      responses:
+        '200':
+            description: Success
+        '500':
+            description: Error
+
   /api/patient/signup:
     post:
       summary: Create patient
@@ -88,6 +108,30 @@ components:
           type: string
           description: Gender
           example: 'Female'
+        dob:
+          type: string
+          description: Date of Birth
+          example: '1999-12-31'
+
+    editPatient:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: First Name
+          example: 'John'
+        last_name:
+          type: string
+          description: Last Name
+          example: 'Doe'
+        address:
+          type: string
+          description: Address
+          example: 'Ruby Street, Colombo'
+        email:
+          type: string
+          description: Email
+          example: 'example@mail.com'
         dob:
           type: string
           description: Date of Birth

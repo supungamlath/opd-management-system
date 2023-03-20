@@ -16,6 +16,14 @@ router.post('/api/patient/signup',
     patientController.registerPatient
 );
 
+router.post('/api/patient/edit',
+    body('first_name').not().isEmpty().escape(),
+    body('last_name').not().isEmpty().escape(),
+    body('address').not().isEmpty().escape(),
+    body('email').isEmail().normalizeEmail(),
+    patientController.editPatient
+);
+
 router.post('/api/patient/create-appointment',
     body('appointment_date').not().isEmpty().isISO8601('yyyy-mm-dd').escape(),
     body('appointment_time').not().isEmpty().escape(),

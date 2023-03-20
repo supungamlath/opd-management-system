@@ -10,7 +10,7 @@ class Professional {
         this.email = email;
         this.phone_number = phone_number;
         this.role = role;
-       }
+    }
 
     static createFromRequest(req) {
         return new Professional(req.body.username, req.body.password, req.body.first_name, req.body.last_name, req.body.email, req.body.phone_number, req.body.role);
@@ -19,6 +19,12 @@ class Professional {
     async save() {
         const [rows] = await db.connection.query('INSERT INTO healthcare_professional SET ?', [this]);
         return rows;
+    }
+
+    static async update(req, professional_ID) {
+        const [rows] = await db.connection.query('UPDATE healthcare_professional SET first_name=?, last_name=?, email=?, phone_number=? WHERE professional_ID = ?', [req.body.first_name, req.body.last_name, req.body.email, req.body.phone_number, professional_ID])
+
+        return rows
     }
 
     static async findByUsernameAndPassword(username, password) {

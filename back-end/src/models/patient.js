@@ -24,6 +24,11 @@ class Patient {
         return rows;
     }
 
+    static async update(req, patient_ID) {
+        const [rows] = await db.connection.query('UPDATE patient SET first_name=?, last_name=?, address=?, email=?, dob=? WHERE patient_ID = ?', [req.body.first_name, req.body.last_name, req.body.address, req.body.email, req.body.dob, patient_ID])
+        return rows
+    }
+
     static async findByUsernameAndPassword(username, password) {
         const [rows] = await db.connection.query('SELECT * FROM patient WHERE username = ? AND password = ?', [username, password]);
         return rows[0];
@@ -48,6 +53,8 @@ class Patient {
         const [rows] = await db.connection.query('SELECT * FROM patient');
         return Object.values(JSON.parse(JSON.stringify(rows)));
     }
+
+
 }
 
 module.exports = {

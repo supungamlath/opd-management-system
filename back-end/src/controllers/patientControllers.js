@@ -58,14 +58,37 @@ const signInPatient = async (req, res) => {
     }
 }
 
+const editPatient = async (req, res) => {
+    const errors = validationResult(req);
+    if (errors.array().length > 0) {
+        res.send(errors.array()[0].msg);
+    } else {
+        try {
+            const user = verifyHeader(req);
+            if (user.patient_ID) {
+                Patient.update(req, user.patient_ID)
+                res.status(200).json({
+                    message: 'Patient details edited successfully'
+                });
+            } else {
+                throw Error("Cannot edit details")
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Cannot edit details');
+        }
+    }
+
+}
+
 const createAppointment = async (req, res) => {
     const errors = validationResult(req);
     if (errors.array().length > 0) {
         res.send(errors.array()[0].msg);
     } else {
         try {
-            const patient = verifyHeader(req);
-            if (patient) {
+            const user = verifyHeader(req);
+            if (user.patient_ID) {
                 const appointment = Appointment.createFromRequest(req)
                 await appointment.save()
                 res.status(200).json({
@@ -112,4 +135,5 @@ module.exports = {
     signInPatient,
     getAppointments,
     createAppointment,
+    editPatient
 }
