@@ -19,6 +19,34 @@ paths:
         '500':
             description: Error
 
+  /api/admin/get-summary:
+    get:
+      summary: Get Summary
+      description: Get summary of number of users, patients and number of daily appointments
+      tags:
+        - System Admin
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+            description: Success
+        '500':
+            description: Error
+
+  /api/admin/get-professionals:
+    get:
+      summary: Get Professional details
+      description: Get Professional details
+      tags:
+        - System Admin
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+            description: Success
+        '500':
+            description: Error
+
 components:
   schemas:
     Professional:
