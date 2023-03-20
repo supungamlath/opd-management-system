@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 function Appointments() {
 
   const { object } = useApi("/api/patient/get-appointments", "GET")
+
   // console.log(res)
   // get columns and rows from data
   // const columns = data ? data.columns : []
