@@ -48,9 +48,9 @@ function Appointments() {
 
 
   const rows = [
-    { id: 1, patientName: 'Kamal', date: '11/12/2023', time: "10:30 AM", status: "Pending" },
-    { id: 2, patientName: 'Amal', date: '11/12/2023', time: "11:30 AM", status: "Pending" },
-    { id: 3, patientName: 'Sunimal', date: '11/12/2023', time: "12:30 AM", status: "Pending" },
+    // { id: 1, patientName: 'Kamal', date: '11/12/2023', time: "10:30 AM", status: "Pending" },
+    // { id: 2, patientName: 'Amal', date: '11/12/2023', time: "11:30 AM", status: "Pending" },
+    // { id: 3, patientName: 'Sunimal', date: '11/12/2023', time: "12:30 AM", status: "Pending" },
   ];
 
   return (

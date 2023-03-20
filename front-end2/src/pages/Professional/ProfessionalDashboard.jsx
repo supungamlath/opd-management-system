@@ -7,6 +7,7 @@ import ProfessionalSidebar from "../../layout/sidebar/ProfessionalSidebar";
 import Navbar from "../../layout/navbar/Navbar";
 import Appointments from "../User/Appointments/Appointments";
 import TodayAppointments from "./TodayAppointments/TodayAppointments";
+import Overview from "./Overview/Overview";
 
 
 function ProfessionalDashboard() {
@@ -48,7 +49,8 @@ function ProfessionalDashboard() {
 
         <main className="userdashboard-main">
           <Routes>
-            <Route path="/" element={<Appointments />} />
+            <Route path="/" element={<Overview />} />
+            <Route path="/all" element={<Appointments />} />
             <Route path="/today" element={<TodayAppointments />} />
           </Routes>
         </main>

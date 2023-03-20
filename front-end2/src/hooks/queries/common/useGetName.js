@@ -1,12 +1,12 @@
 import { useQuery } from "react-query";
 import axios from "axios";
 
-const useGetAllProfessionals = async () => {
+const useGetName = async () => {
 
   // fetch all professionals
 
   const { data } = await axios({
-    url: '/api/admin/list-professionals',
+    url: '/api/common/get-name',
     method: 'GET',
     headers: {
       "Authorization": `Bearer ${localStorage.jwt}`
@@ -17,7 +17,7 @@ const useGetAllProfessionals = async () => {
 };
 
 export default function useApi() {
-  return useQuery(["listProfessionals"], useGetAllProfessionals, {
+  return useQuery(["get-name"], useGetName, {
     refetchOnMount: false,
     refetchOnWindowFocus: false
   });
